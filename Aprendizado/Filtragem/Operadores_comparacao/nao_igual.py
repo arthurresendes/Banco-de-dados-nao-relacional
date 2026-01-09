@@ -13,7 +13,7 @@ def testar_conexao():
         print(f"Erro ao conectar: {e}")
         exit()
 
-def colecoes():
+def nao_igual():
     db = client['Escola_Banco']
     collection = db['alunos']
     query = {'nome': {'$ne': 'Arthur'}}
@@ -23,4 +23,4 @@ def colecoes():
 
 if __name__ == "__main__":
     testar_conexao()
-    colecoes()
+    nao_igual()

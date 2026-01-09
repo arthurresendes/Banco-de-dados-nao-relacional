@@ -1,0 +1,29 @@
+from pymongo import MongoClient
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+client = MongoClient(os.getenv("MONGO_URI"))
+
+def testar_conexao():
+    try:
+        client.admin.command('ping')
+        print("Conexão estabelecida com sucesso!")
+    except Exception as e:
+        print(f"Erro ao conectar: {e}")
+        exit()
+
+def colecoes():
+    db = client['Escola_Banco']
+    collection = db['alunos']
+    print("Primeiro elemento: ")
+    first_document = collection.find_one()
+    print(first_document)
+    print("Todos elementos: ")
+    all_documents = collection.find()
+    for i in all_documents:
+        print(i)    
+
+if __name__ == "__main__":
+    testar_conexao()
+    colecoes()

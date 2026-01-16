@@ -17,8 +17,8 @@ def testar_conexao():
 def atualizar():
     db = client['Escola_Banco']
     colecao = db['alunos']
-    antigo = {'idade': 11}
-    novo = {'$set': {'idade': 12}}
+    antigo = {'nome': 'Gustavo'}
+    novo = {'$set': {'nome': 'Gus'}}
     colecao.update_one(antigo,novo)
     res = colecao.find()
     for i in res:

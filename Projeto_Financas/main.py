@@ -1,4 +1,4 @@
-from querys import insercao
+from querys import insercao,deletar
 import sys
 
 def menu():
@@ -11,6 +11,10 @@ def menu():
 def submenu_insercao():
     print("1 - Inserir um só")
     print("2 - Inserir Muitos")
+
+def submenu_deletar():
+    print("1 - Deletar um só")
+    print("2 - Deletar Muitos")
 
 def main():
     print("="*50)
@@ -61,8 +65,8 @@ def main():
                         break
                 except:
                     print("Digite um numero inteiro valido!!")
-            for _ in range(quantidade):
-                nome = input("Digite o nome da pessoa: ")
+            for i in range(quantidade):
+                nome = input(f"Digite o nome da {i+1} pessoa: ")
                 try:
                     salario  = float(input("Digite o salario da pessoa: "))
                 except:
@@ -72,6 +76,41 @@ def main():
             main()
     elif escolha_opcao == 2:
         pass
+
+    elif escolha_opcao == 3:
+        submenu_deletar()
+        while True:
+            try:
+                escolha_deletar = int(input(": "))
+                if escolha_deletar > 0 and escolha_deletar < 3:
+                    break
+                else:
+                    print("Escolha 1 ou 2")
+            except:
+                print("Erro encontrado, digite numeros validos")
+        
+        if escolha_deletar == 1:
+            nome = input("Digite o nome da pessoa: ")
+            deletar(nome)
+            print("Vale lembrar que se a pessoa não existir no banco não sera deletada...")
+            print("Processo concluido!")
+            main()
+        
+        if escolha_deletar == 2:
+            while True:
+                try:
+                    quantidade = int(input("Quantas pessoas quer deletar: "))
+                    if isinstance(quantidade,int):
+                        break
+                except:
+                    print("Digite um numero inteiro valido!!")
+            for i in range(quantidade):
+                nome = input(f"Digite o nome da {i+1} pessoa: ")
+                deletar(nome)
+            print("Vale lembrar que se a pessoa não existir no banco não sera deletada...")
+            print("Processo concluido!")
+            main()
+
     elif escolha_opcao == 5:
         print("=== Saindo ===")
         sys.exit(0)

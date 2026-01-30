@@ -14,5 +14,5 @@ def insercao(nome:str,salario:float):
 
 
 def deletar(nome:str):
-    query = {'nome': {'$eq': nome}}
+    query = {'Nome': {'$eq': nome}}
     collection.delete_one(query)

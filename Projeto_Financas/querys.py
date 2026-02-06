@@ -14,7 +14,11 @@ def insercao(nome:str,salario:float):
 
 def deletar(nome:str):
     query = {'Nome': {'$eq': nome}}
-    collection.delete_one(query)
+    res = collection.delete_one(query)
+    if res.deleted_count > 0:
+        return "Deletado com sucesso"
+    else:
+        return "Usuario não encontrado"
 
 def atualizar(nome_filter: str,salario: float):
     filtro = {"Nome": nome_filter}
@@ -43,3 +47,17 @@ def ver_info_or(nome1: str, nome2: str):
         return "Sem usuarios com esses nomes!"
     else:
         return lista_users
+
+def maior():
+    res = collection.find().sort('Investimento', -1).limit(1)
+    maior_investimento = []
+    for i in res:
+        maior_investimento.append(f'Nome: {i['Nome']}, Salario: {i['Salario']}, Porte para investimento: {i['Investimento']}')
+    return maior_investimento
+
+def menor():
+    res = collection.find().sort('Investimento', 1).limit(1)
+    menor_investimento = []
+    for i in res:
+        menor_investimento.append(f'Nome: {i['Nome']}, Salario: {i['Salario']}, Porte para investimento: {i['Investimento']}')
+    return menor_investimento

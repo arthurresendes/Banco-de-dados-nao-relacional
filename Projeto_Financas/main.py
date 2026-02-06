@@ -1,4 +1,4 @@
-from querys import insercao,deletar,atualizar,valores_salario,ver_info_or
+from querys import insercao,deletar,atualizar,valores_salario,ver_info_or,maior,menor
 import sys
 
 def menu():
@@ -111,10 +111,18 @@ def main():
             print(valores_salario(salario1,salario2))
             main()
         
-        if escolha_busca == 2:
+        elif escolha_busca == 2:
             nome1 = input(f"Digite o nome da 1 pessoa: ")
             nome2 = input(f"Digite o nome da 2 pessoa: ")
             print(ver_info_or(nome1,nome2))
+            main()
+    
+        elif escolha_busca == 3:
+            print(maior())
+            main()
+
+        elif escolha_busca == 4:
+            print(menor())
             main()
 
     # ========================== Deletar ==============================
@@ -132,9 +140,7 @@ def main():
         
         if escolha_deletar == 1:
             nome = input("Digite o nome da pessoa: ")
-            deletar(nome)
-            print("Vale lembrar que se a pessoa não existir no banco não sera deletada...")
-            print("Processo concluido!")
+            print(deletar(nome))
             main()
         
         elif escolha_deletar == 2:
@@ -148,8 +154,6 @@ def main():
             for i in range(quantidade):
                 nome = input(f"Digite o nome da {i+1} pessoa: ")
                 deletar(nome)
-            print("Vale lembrar que se a pessoa não existir no banco não sera deletada...")
-            print("Processo concluido!")
             main()
     
     # =============================== Atualizar =============================

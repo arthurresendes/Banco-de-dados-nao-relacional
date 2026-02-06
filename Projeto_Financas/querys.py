@@ -15,3 +15,13 @@ def insercao(nome:str,salario:float):
 def deletar(nome:str):
     query = {'Nome': {'$eq': nome}}
     collection.delete_one(query)
+
+def atualizar(nome_filter: str,salario: float):
+    filtro = {"Nome": nome_filter}
+    valores_novos = {"$set": {"Salario": salario, "Investimento": salario*0.10}}
+    resultado = collection.update_one(filtro, valores_novos)
+    if resultado.matched_count > 0:
+        return f"Sucesso: {resultado.modified_count} documento(s) alterado(s)."
+    else:
+        return "Usuário não encontrado."
+

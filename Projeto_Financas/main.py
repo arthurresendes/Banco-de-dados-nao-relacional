@@ -1,4 +1,4 @@
-from querys import insercao,deletar
+from querys import insercao,deletar,atualizar
 import sys
 
 def menu():
@@ -15,6 +15,10 @@ def submenu_insercao():
 def submenu_deletar():
     print("1 - Deletar um só")
     print("2 - Deletar Muitos")
+    
+def submenu_atualizar():
+    print("1 - Atualizar um só")
+    print("2 - Atualizar Muitos")
 
 def main():
     print("="*50)
@@ -110,8 +114,49 @@ def main():
             print("Vale lembrar que se a pessoa não existir no banco não sera deletada...")
             print("Processo concluido!")
             main()
+    
+    elif escolha_opcao == 4:
+        submenu_atualizar()
+        while True:
+            try:
+                escolha_atualizar = int(input(": "))
+                if escolha_atualizar > 0 and escolha_atualizar < 3:
+                    break
+                else:
+                    print("Escolha 1 ou 2")
+            except:
+                print("Erro encontrado, digite numeros validos")
+        
+        if escolha_atualizar == 1:
+            nome = input("Digite o nome da pessoa a atualizar: ")
+            while True:
+                try:
+                    salario  = float(input("Digite o salario da pessoa: "))
+                    if isinstance(salario,float):
+                        break
+                except:
+                    print("Digite um salario valido")
+            print(atualizar(nome,salario))
+            main()
+        
+        if escolha_atualizar == 2:
+            while True:
+                try:
+                    quantidade = int(input("Quantas pessoas quer atualizar: "))
+                    if isinstance(quantidade,int):
+                        break
+                except:
+                    print("Digite um numero inteiro valido!!")
+            for i in range(quantidade):
+                nome = input(f"Digite o nome da {i+1} pessoa: ")
+                try:
+                    salario  = float(input("Digite o salario da pessoa: "))
+                except:
+                    print("Digite um salario valido")
+                print(atualizar(nome,salario))
+            main()
 
-    elif escolha_opcao == 5:
+    else:
         print("=== Saindo ===")
         sys.exit(0)
 

@@ -1,4 +1,4 @@
-from querys import insercao,deletar,atualizar
+from querys import insercao,deletar,atualizar,valores_salario,ver_info_or
 import sys
 
 def menu():
@@ -20,6 +20,12 @@ def submenu_atualizar():
     print("1 - Atualizar um só")
     print("2 - Atualizar Muitos")
 
+def submenu_buscar():
+    print("1 - Ver de salario X até Y (EX: 100 ate 2000)")
+    print("2 - Ver informações de uma ou outra pessoa (Ex: Arthur ou Maria)")
+    print("3 - Pessoa com maior aporte de investimento")
+    print("4 - Pessoa com menor aporte de investimento")
+
 def main():
     print("="*50)
     print("--- Bem vindo ao controle de finanças ---")
@@ -36,6 +42,7 @@ def main():
         except:
             print("Erro encontrado, digite numeros validos")
     
+    # ==================== INSERIR =======================
     if escolha_opcao == 1:
         submenu_insercao()
         while True:
@@ -61,7 +68,7 @@ def main():
             print("Pessoa cadastrada com sucesso !!")
             main()
         
-        if escolha_insercao == 2:
+        elif escolha_insercao == 2:
             while True:
                 try:
                     quantidade = int(input("Quantas pessoas quer adicionar: "))
@@ -78,9 +85,39 @@ def main():
                 insercao(nome,salario)
                 print("Pessoa cadastrada com sucesso !!")
             main()
-    elif escolha_opcao == 2:
-        pass
 
+    # ============= BUSCA ======================
+    elif escolha_opcao == 2:
+        submenu_buscar()
+        while True:
+            try:
+                escolha_busca = int(input(": "))
+                if escolha_busca > 0 and escolha_busca < 5:
+                    break
+                else:
+                    print("Escolha 1 até 4")
+            except:
+                print("Erro encontrado, digite numeros validos")
+        
+        if escolha_busca == 1:
+            while True:
+                try:
+                    salario1  = float(input("Digite o salario minimo: "))
+                    salario2  = float(input("Digite o salario maximo: "))
+                    if isinstance(salario1,float) and isinstance(salario2, float):
+                        break
+                except:
+                    print("Digite um valores validos")
+            print(valores_salario(salario1,salario2))
+            main()
+        
+        if escolha_busca == 2:
+            nome1 = input(f"Digite o nome da 1 pessoa: ")
+            nome2 = input(f"Digite o nome da 2 pessoa: ")
+            print(ver_info_or(nome1,nome2))
+            main()
+
+    # ========================== Deletar ==============================
     elif escolha_opcao == 3:
         submenu_deletar()
         while True:
@@ -100,7 +137,7 @@ def main():
             print("Processo concluido!")
             main()
         
-        if escolha_deletar == 2:
+        elif escolha_deletar == 2:
             while True:
                 try:
                     quantidade = int(input("Quantas pessoas quer deletar: "))
@@ -115,6 +152,7 @@ def main():
             print("Processo concluido!")
             main()
     
+    # =============================== Atualizar =============================
     elif escolha_opcao == 4:
         submenu_atualizar()
         while True:
@@ -139,7 +177,7 @@ def main():
             print(atualizar(nome,salario))
             main()
         
-        if escolha_atualizar == 2:
+        elif escolha_atualizar == 2:
             while True:
                 try:
                     quantidade = int(input("Quantas pessoas quer atualizar: "))

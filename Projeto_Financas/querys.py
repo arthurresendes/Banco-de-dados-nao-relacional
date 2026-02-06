@@ -25,3 +25,21 @@ def atualizar(nome_filter: str,salario: float):
     else:
         return "Usuário não encontrado."
 
+
+def valores_salario(salario_de: float, salario_ate:float):
+    query = {'$and': [{'Salario': {'$gte': salario_de}},{'Salario': {'$lte': salario_ate}}]}
+    res = collection.find(query)
+    lista_users = [i for i in res]
+    if lista_users == []:
+        return "Sem salarios entre esses valores!"
+    else:
+        return lista_users
+
+def ver_info_or(nome1: str, nome2: str):
+    query = {'$or': [{'Nome': {'$eq': nome1}},{'Nome': {'$eq': nome2}}]}
+    res = collection.find(query)
+    lista_users = [i for i in res]
+    if lista_users == []:
+        return "Sem usuarios com esses nomes!"
+    else:
+        return lista_users

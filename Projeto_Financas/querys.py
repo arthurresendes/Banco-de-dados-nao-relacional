@@ -61,3 +61,14 @@ def menor():
     for i in res:
         menor_investimento.append(f'Nome: {i['Nome']}, Salario: {i['Salario']}, Porte para investimento: {i['Investimento']}')
     return menor_investimento
+
+def top5():
+    res = collection.find().sort('Investimento', -1).limit(5)
+    menor_investimento = []
+    for i in res:
+        menor_investimento.append(f'Nome: {i['Nome']}, Salario: {i['Salario']}, Porte para investimento: {i['Investimento']}')
+    return menor_investimento
+
+def total_docs():
+    res = collection.count_documents()
+    return res

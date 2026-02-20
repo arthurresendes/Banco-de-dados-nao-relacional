@@ -1,4 +1,4 @@
-from querys import insercao,deletar,atualizar,valores_salario,ver_info_or,maior,menor
+from querys import insercao,deletar,atualizar,valores_salario,ver_info_or,maior,menor,top5,total_docs
 import sys
 
 def menu():
@@ -15,7 +15,7 @@ def submenu_insercao():
 def submenu_deletar():
     print("1 - Deletar um só")
     print("2 - Deletar Muitos")
-    
+   
 def submenu_atualizar():
     print("1 - Atualizar um só")
     print("2 - Atualizar Muitos")
@@ -25,12 +25,14 @@ def submenu_buscar():
     print("2 - Ver informações de uma ou outra pessoa (Ex: Arthur ou Maria)")
     print("3 - Pessoa com maior aporte de investimento")
     print("4 - Pessoa com menor aporte de investimento")
+    print("5 - Top 5 maiores aporte de investimento")
+    print("6 - Total de pessoas na coleção")
 
 def main():
     print("="*50)
     print("--- Bem vindo ao controle de finanças ---")
     print("="*50)
-    
+   
     menu()
     while True:
         try:
@@ -41,7 +43,7 @@ def main():
                 print("Escolha um numero de 1 até 4")
         except:
             print("Erro encontrado, digite numeros validos")
-    
+   
     # ==================== INSERIR =======================
     if escolha_opcao == 1:
         submenu_insercao()
@@ -54,7 +56,7 @@ def main():
                     print("Escolha 1 ou 2")
             except:
                 print("Erro encontrado, digite numeros validos")
-        
+       
         if escolha_insercao == 1:
             nome = input("Digite o nome da pessoa: ")
             while True:
@@ -67,7 +69,7 @@ def main():
             insercao(nome,salario)
             print("Pessoa cadastrada com sucesso !!")
             main()
-        
+       
         elif escolha_insercao == 2:
             while True:
                 try:
@@ -92,13 +94,13 @@ def main():
         while True:
             try:
                 escolha_busca = int(input(": "))
-                if escolha_busca > 0 and escolha_busca < 5:
+                if escolha_busca > 0 and escolha_busca < 7:
                     break
                 else:
-                    print("Escolha 1 até 4")
+                    print("Escolha 1 até 6")
             except:
                 print("Erro encontrado, digite numeros validos")
-        
+       
         if escolha_busca == 1:
             while True:
                 try:
@@ -110,19 +112,27 @@ def main():
                     print("Digite um valores validos")
             print(valores_salario(salario1,salario2))
             main()
-        
+       
         elif escolha_busca == 2:
             nome1 = input(f"Digite o nome da 1 pessoa: ")
             nome2 = input(f"Digite o nome da 2 pessoa: ")
             print(ver_info_or(nome1,nome2))
             main()
-    
+   
         elif escolha_busca == 3:
             print(maior())
             main()
 
         elif escolha_busca == 4:
             print(menor())
+            main()
+
+        elif escolha_busca == 5:
+            print(top5())
+            main()
+
+        elif escolha_busca == 6:
+            print(total_docs())
             main()
 
     # ========================== Deletar ==============================
@@ -137,12 +147,12 @@ def main():
                     print("Escolha 1 ou 2")
             except:
                 print("Erro encontrado, digite numeros validos")
-        
+       
         if escolha_deletar == 1:
             nome = input("Digite o nome da pessoa: ")
             print(deletar(nome))
             main()
-        
+       
         elif escolha_deletar == 2:
             while True:
                 try:
@@ -155,7 +165,7 @@ def main():
                 nome = input(f"Digite o nome da {i+1} pessoa: ")
                 deletar(nome)
             main()
-    
+   
     # =============================== Atualizar =============================
     elif escolha_opcao == 4:
         submenu_atualizar()
@@ -168,7 +178,7 @@ def main():
                     print("Escolha 1 ou 2")
             except:
                 print("Erro encontrado, digite numeros validos")
-        
+       
         if escolha_atualizar == 1:
             nome = input("Digite o nome da pessoa a atualizar: ")
             while True:
@@ -180,7 +190,7 @@ def main():
                     print("Digite um salario valido")
             print(atualizar(nome,salario))
             main()
-        
+       
         elif escolha_atualizar == 2:
             while True:
                 try:

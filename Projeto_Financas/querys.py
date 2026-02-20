@@ -70,5 +70,5 @@ def top5():
     return menor_investimento
 
 def total_docs():
-    res = collection.count_documents()
+    res = collection.count_documents({})
     return res

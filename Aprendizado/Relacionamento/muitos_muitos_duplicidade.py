@@ -6,6 +6,10 @@ load_dotenv()
 cliente = MongoClient(os.getenv("MONGO_URI"))
 db = cliente['Farmacia']
 collection = db['Vendas']
+'''
+VALE LEMBRAR QUE ISSO É APENAS CODÍGO EXEMPLO A FIM DE APRENDIZADO
+
+'''
 
 def insercao_n_para_n_exemplo():
     query = [{

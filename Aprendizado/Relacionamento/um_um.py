@@ -7,6 +7,11 @@ cliente = MongoClient(os.getenv("MONGO_URI"))
 db = cliente['Scholl']
 collection = db['Alunos']
 
+'''
+VALE LEMBRAR QUE ISSO É APENAS CODÍGO EXEMPLO A FIM DE APRENDIZADO
+
+'''
+
 def insercao_um_para_um_exemplo():
     query = {
         '_id': 'a01',

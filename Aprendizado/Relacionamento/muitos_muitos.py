@@ -42,7 +42,7 @@ def insercao_n_para_n_exemplo():
     "fornecedor_ids": ["f07"] # Ele so entrga para o fornecedor y
 }
 
-    collection.insert_one(query)
+    collection.insert_many(query)
     res = collection.find({})
     for i in res:
         print(i)

@@ -8,7 +8,7 @@ db = cliente['Farmacia']
 collection = db['Vendas']
 
 def insercao_n_para_n_exemplo():
-    query = {
+    query = [{
     "_id": "f04",
     "cnpj": "165486984",
     "nome": "Fornecedor X",
@@ -40,7 +40,7 @@ def insercao_n_para_n_exemplo():
     "descricao": "Trembolona",
     "preco": 127.46,
     "fornecedor_ids": ["f07"] # Ele so entrga para o fornecedor y
-}
+}]
 
     collection.insert_many(query)
     res = collection.find({})

@@ -32,5 +32,18 @@ validator_cars = {
     }
 }
 
-db.create_collection("cars", validator=validator_cars)
+try:
+    db.create_collection('cars', validator=validator_cars)
+    print("Coleção 'cars' criada com validação!")
+    query = {'model': 'Fiesta', 'madeBy': 'Ford', 'year': '2015'}
+    try:
+        cars = db['cars']
+        cars.insert_one(query)
+        res = cars.find()
+        for i in res:
+            print(i)
+    except:
+        print("Erro na digitação, verifique os campos")
+except Exception as e:
+    print(f"Erro: {e}")
 

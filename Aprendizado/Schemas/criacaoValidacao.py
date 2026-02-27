@@ -45,5 +45,13 @@ try:
     except:
         print("Erro na digitação, verifique os campos")
 except Exception as e:
-    print(f"Erro: {e}")
+    print(f"{e}")
+    db.command({
+        "collMod": "cars",
+        "validator": validator_cars,
+        "validationLevel": "strict",    
+        "validationAction": "error"
+    })
+
+    print("Validação aplicada com sucesso!")
 

@@ -8,6 +8,42 @@ client = MongoClient(os.getenv("MONGO_URI"))
 db = client['Financa_Pessoas']
 collection = db['Pessoas']
 
+# ======================= Validação ==========================
+def validation():
+    my_validator = {
+        '$jsonSchema': {
+            'bsonType': "object",
+            'required': ['Nome','Salario' ,'Investimento'], 
+            'properties': {
+                'Nome': {
+                    'bsonType': "string",
+                    'description': 'O nome deve ser uma string'
+                },
+                'Salario': {
+                    'bsonType': ["double", "int"],
+                    'minimum': 1600.00,
+                    'description': 'Salario deve ser acima de 1600 e double'
+                },
+                'Investimento': {
+                    'bsonType': ["double", "int"],
+                    'description': 'O investimento deve ser double'
+                },
+            }
+        }
+    }
+
+    db.command({
+        "collMod": "Pessoas",
+        "validator": my_validator,
+        "validationLevel": "strict",    
+        "validationAction": "error"
+    })
+
+    print("Validação aplicada com sucesso!")
+
+validation()
+
+# ====================== CRUD ===========================
 def insercao(nome:str,salario:float):
     query = {"Nome": nome,"Salario": salario,"Investimento": salario*0.10}
     collection.insert_one(query)

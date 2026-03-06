@@ -20,7 +20,7 @@ def lendarios_count():
 def distinct_generations():
     return collection.distinct("generation")
 
-# i = Sem case sensitive, m = modo multilinhas
+# i = Sem case sensitive(ignore case), m = modo multilinhas
 def name_wih_regex(name):
     query = {"name": {"$regex": name, "$options": "i"}}
     res = collection.find(query, {"_id": False,"name": True, "types": True,"legendary": True})
@@ -32,3 +32,16 @@ def pokemon_with_max_power():
     res = collection.find({}).sort("attack",-1).limit(5)
     for i in res:
         print(i) 
+
+
+def search_type_in_arrays(tipo):
+    query = {"types": tipo}
+    res = collection.find(query)
+    for i in res:
+        print(i)
+
+def search_two_type_in_arrays(tipo1,tipo2):
+    query = {"types": {"$in": [tipo1,tipo2]}}
+    res = collection.find(query)
+    for i in res:
+        print(i)

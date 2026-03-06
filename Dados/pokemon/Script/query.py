@@ -23,7 +23,7 @@ def distinct_generations():
 # i = Sem case sensitive, m = modo multilinhas
 def name_wih_regex(name):
     query = {"name": {"$regex": name, "$options": "i"}}
-    res = collection.find(query)
+    res = collection.find(query, {"_id": False,"name": True, "types": True,"legendary": True})
     
     for i in res:
         print(i)
@@ -32,5 +32,3 @@ def pokemon_with_max_power():
     res = collection.find({}).sort("attack",-1).limit(5)
     for i in res:
         print(i) 
-
-pokemon_with_max_power()

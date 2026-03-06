@@ -17,4 +17,6 @@ def lendarios_count():
         print(i)
     return f"Total: {contagem}"
 
-print(lendarios_count())
+def distinct_generations():
+    return collection.distinct("generation")
+

@@ -20,3 +20,12 @@ def lendarios_count():
 def distinct_generations():
     return collection.distinct("generation")
 
+# i = Sem case sensitive, m = modo multilinhas
+def name_wih_regex(name):
+    query = {"name": {"$regex": name, "$options": "i"}}
+    res = collection.find(query)
+    
+    for i in res:
+        print(i)
+
+print(name_wih_regex("Charmander"))

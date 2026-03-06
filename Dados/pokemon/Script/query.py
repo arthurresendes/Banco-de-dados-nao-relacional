@@ -28,4 +28,9 @@ def name_wih_regex(name):
     for i in res:
         print(i)
 
-print(name_wih_regex("Charmander"))
+def pokemon_with_max_power():
+    res = collection.find({}).sort("attack",-1).limit(5)
+    for i in res:
+        print(i) 
+
+pokemon_with_max_power()

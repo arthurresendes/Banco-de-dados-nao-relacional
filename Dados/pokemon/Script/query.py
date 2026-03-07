@@ -23,7 +23,7 @@ def distinct_generations():
 # i = Sem case sensitive(ignore case), m = modo multilinhas
 def name_wih_regex(name):
     query = {"name": {"$regex": name, "$options": "i"}}
-    res = collection.find(query, {"_id": False,"name": True, "types": True,"legendary": True})
+    res = collection.find(query, {"_id": False,"name": True, "types": 1,"legendary": True})
     
     for i in res:
         print(i)

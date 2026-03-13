@@ -49,7 +49,7 @@ def search_two_type_in_arrays(tipo1,tipo2):
 def searche_fire_or_aqua():
     query = {"$or": [
         {"types": {"$regex": "fire", "$options": "i"}},
-        {"types": {"$regex": "aqua", "$options": "i"}}
+        {"types": {"$regex": "water", "$options": "i"}}
     ]}
     res = collection.find(query)
     for i in res:
@@ -65,3 +65,10 @@ def search_pokemon_with_two_types():
     res = collection.find(query)
     for i in res:
         print(i)
+
+def search_pokemon_exectaly_with_two_types():
+    query = {"types": {"$all": ["Fire", "Water"]}}
+    res = collection.find(query)
+    for i in res:
+        print(i)
+search_pokemon_exectaly_with_two_types()

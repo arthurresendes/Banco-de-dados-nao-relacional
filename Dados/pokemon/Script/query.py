@@ -77,3 +77,13 @@ def limit_five_max_powerfull_pokemons():
     res = collection.find({}).sort("attack", -1).limit(5)
     for i in res:
         print(i)
+
+
+def skip():
+    page = 3
+    itens = 10
+    res = collection.find({}).sort("name", 1).skip(page).limit(itens)
+    for i in res:
+        print(i)
+
+skip()

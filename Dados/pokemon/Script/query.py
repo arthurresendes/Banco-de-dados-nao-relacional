@@ -55,4 +55,9 @@ def searche_fire_or_aqua():
     for i in res:
         print(i)
 
-searche_fire_or_aqua()
+def sort_pokemons():
+    res = collection.find({}).sort("name",1)
+    for i in res:
+        print(i)
+
+sort_pokemons()

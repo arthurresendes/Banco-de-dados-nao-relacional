@@ -60,4 +60,8 @@ def sort_pokemons():
     for i in res:
         print(i)
 
-sort_pokemons()
+def search_pokemon_with_two_types():
+    query = {"types": {"$size": 2}}
+    res = collection.find(query)
+    for i in res:
+        print(i)

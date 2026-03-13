@@ -45,3 +45,14 @@ def search_two_type_in_arrays(tipo1,tipo2):
     res = collection.find(query)
     for i in res:
         print(i)
+
+def searche_fire_or_aqua():
+    query = {"$or": [
+        {"types": {"$regex": "fire", "$options": "i"}},
+        {"types": {"$regex": "aqua", "$options": "i"}}
+    ]}
+    res = collection.find(query)
+    for i in res:
+        print(i)
+
+searche_fire_or_aqua()

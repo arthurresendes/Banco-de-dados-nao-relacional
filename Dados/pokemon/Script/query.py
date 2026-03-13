@@ -71,4 +71,9 @@ def search_pokemon_exectaly_with_two_types():
     res = collection.find(query)
     for i in res:
         print(i)
-search_pokemon_exectaly_with_two_types()
+
+
+def limit_five_max_powerfull_pokemons():
+    res = collection.find({}).sort("attack", -1).limit(5)
+    for i in res:
+        print(i)

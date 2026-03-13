@@ -85,5 +85,3 @@ def skip():
     res = collection.find({}).sort("name", 1).skip(page).limit(itens)
     for i in res:
         print(i)
-
-skip()

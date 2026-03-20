@@ -103,3 +103,10 @@ def update_mul():
     novo = {'$mul': {'defense': 1.15}}
     collection.update_one(antigo,novo)
     return "Atualizado defesa"
+
+# Caso não exista cria um novo
+def update_upsert():
+    antigo = {"name": "Pikachu"}
+    novo = {"$set": {"attack": 60}}
+    collection.update_one(antigo,novo,upsert=True)
+    return "Atualizado ataque do pikachu"

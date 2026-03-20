@@ -85,3 +85,9 @@ def skip():
     res = collection.find({}).sort("name", 1).skip(page).limit(itens)
     for i in res:
         print(i)
+
+def update():
+    antigo = {'legendary': False}
+    novo = {'$set': {'legendary': True}}
+    collection.update_one(antigo,novo)
+    return "Atualizado"

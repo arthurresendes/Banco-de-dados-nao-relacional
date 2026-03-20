@@ -110,3 +110,9 @@ def update_upsert():
     novo = {"$set": {"attack": 60}}
     collection.update_one(antigo,novo,upsert=True)
     return "Atualizado ataque do pikachu"
+
+def update_in_current_time():
+    antigo = {"name": "Pikachu"}
+    novo = {"$set": {"speed": 80},"$currentDate": {"data_envio": True,  "logs.timestamp": {"$type": "timestamp"}}}
+    collection.update_one(antigo,novo)
+    return "Atualizado defesa do pikachu"

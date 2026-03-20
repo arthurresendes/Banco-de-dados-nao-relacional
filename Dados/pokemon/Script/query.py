@@ -91,3 +91,9 @@ def update_one_legendary():
     novo = {'$set': {'legendary': True}}
     collection.update_one(antigo,novo)
     return "Atualizado"
+
+def update_inc():
+    antigo = {'hp': 39}
+    novo = {'$inc': {'hp': 50, 'speed': -20}}
+    collection.update_one(antigo,novo)
+    return "Atualizado"

@@ -97,3 +97,9 @@ def update_inc():
     novo = {'$inc': {'hp': 50, 'speed': -20}}
     collection.update_one(antigo,novo)
     return "Atualizado"
+
+def update_mul():
+    antigo = {'defense': 30}
+    novo = {'$mul': {'defense': 1.15}}
+    collection.update_one(antigo,novo)
+    return "Atualizado defesa"

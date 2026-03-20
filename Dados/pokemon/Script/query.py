@@ -115,4 +115,4 @@ def update_in_current_time():
     antigo = {"name": "Pikachu"}
     novo = {"$set": {"speed": 80},"$currentDate": {"data_envio": True,  "logs.timestamp": {"$type": "timestamp"}}}
     collection.update_one(antigo,novo)
-    return "Atualizado defesa do pikachu"
+    return "Atualizado velocidade do pikachu"

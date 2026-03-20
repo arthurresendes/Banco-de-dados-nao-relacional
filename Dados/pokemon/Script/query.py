@@ -86,7 +86,7 @@ def skip():
     for i in res:
         print(i)
 
-def update():
+def update_one_legendary():
     antigo = {'legendary': False}
     novo = {'$set': {'legendary': True}}
     collection.update_one(antigo,novo)

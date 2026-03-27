@@ -116,3 +116,9 @@ def update_in_current_time():
     novo = {"$set": {"speed": 80},"$currentDate": {"data_envio": True,  "logs.timestamp": {"$type": "timestamp"}}}
     collection.update_one(antigo,novo)
     return "Atualizado velocidade do pikachu"
+
+def update_array():
+    antigo = {"name": "Pikachu"}
+    novo = {"$push": {"sound": ["Pika-Pi"]}}
+    collection.update_one(antigo,novo)
+    return "Adicionando som ao pikachu"

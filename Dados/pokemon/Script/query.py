@@ -158,3 +158,9 @@ def update_pop():
     novo = {"$pop": {"sound": 1}}
     collection.update_one(antigo,novo)
     return "Removendo o ultimo som do charmander"
+
+def update_pull():
+    antigo = {"name": "Pikachu"}
+    novo = {"$pull": {"sound": "Pika-Pi"}}
+    collection.update_one(antigo,novo)
+    return "Removendo um som especifico do pikachu"

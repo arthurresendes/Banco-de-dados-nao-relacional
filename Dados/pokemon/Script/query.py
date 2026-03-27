@@ -122,3 +122,9 @@ def update_array():
     novo = {"$push": {"sound": ["Pika-Pi"]}}
     collection.update_one(antigo,novo)
     return "Adicionando som ao pikachu"
+
+def update_array_multiple_sounds():
+    antigo = {"name": "Charmander"}
+    novo = {"$push": {"sound": {"$each": ["Charmander", "Char-Char"]}}}
+    collection.update_one(antigo,novo)
+    return "Adicionando varios sons ao Charmander"

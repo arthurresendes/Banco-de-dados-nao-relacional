@@ -152,3 +152,9 @@ def update_delete_one_sound():
     novo = {"$push": {"sound": {"$each": [], "$slice": 2}}} # Mantem os 2 primeiros apos o push
     collection.update_one(antigo,novo)
     return "Mantendo apenas os 2 primeiros sons do Charmander"
+
+def update_pop():
+    antigo = {"name": "Charmander"}
+    novo = {"$pop": {"sound": 1}}
+    collection.update_one(antigo,novo)
+    return "Removendo o ultimo som do charmander"

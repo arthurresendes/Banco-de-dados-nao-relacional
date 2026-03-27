@@ -146,3 +146,9 @@ def update_and_sort_arrays():
     novo = {"$push": {"sound": {"$each": ["Pikachuu"], "$sort": 1}}}
     collection.update_one(antigo,novo)
     return "Adicionando e ordenando o array"
+
+def update_delete_one_sound():
+    antigo = {"name": "Charmander"}
+    novo = {"$push": {"sound": {"$each": [], "$slice": 2}}} # Mantem os 2 primeiros apos o push
+    collection.update_one(antigo,novo)
+    return "Mantendo apenas os 2 primeiros sons do Charmander"

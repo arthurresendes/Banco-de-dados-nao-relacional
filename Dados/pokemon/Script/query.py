@@ -134,3 +134,9 @@ def update_array_multiple_sounds_with_position():
     novo = {"$push": {"sound": {"$each": ["Char-Char"], "$position": 0}}}
     collection.update_one(antigo,novo)
     return "Adicionando Char-Char ao primeiro som da lista no Charmander"
+
+def update_array_not_duplicates():
+    antigo = {"name": "Charmander"}
+    novo = {"$addToSet": {"sound": {"$each": ["Char-Char", "CHARMANDERR"]}}} # Only CHARMANDERR is add in mongodb
+    collection.update_one(antigo,novo)
+    return "Adicionando apenas um som evitando duplicatas"

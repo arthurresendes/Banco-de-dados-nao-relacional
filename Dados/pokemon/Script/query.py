@@ -140,3 +140,9 @@ def update_array_not_duplicates():
     novo = {"$addToSet": {"sound": {"$each": ["Char-Char", "CHARMANDERR"]}}} # Only CHARMANDERR is add in mongodb
     collection.update_one(antigo,novo)
     return "Adicionando apenas um som evitando duplicatas"
+
+def update_and_sort_arrays():
+    antigo = {"name": "Pikachu"}
+    novo = {"$push": {"sound": {"$each": ["Pikachuu"], "$sort": 1}}}
+    collection.update_one(antigo,novo)
+    return "Adicionando e ordenando o array"

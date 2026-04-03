@@ -1,4 +1,4 @@
-from pymongo import MongoClient
+from pymongo import MongoClient,ASCENDING
 from dotenv import load_dotenv
 import os
 
@@ -164,3 +164,7 @@ def update_pull():
     novo = {"$pull": {"sound": "Pika-Pi"}}
     collection.update_one(antigo,novo)
     return "Removendo um som especifico do pikachu"
+
+def create_index_in_name():
+    name_index = collection.create_index([{"name", ASCENDING}])
+    return name_index

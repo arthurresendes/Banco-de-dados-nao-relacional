@@ -168,3 +168,9 @@ def update_pull():
 def create_index_in_name():
     name_index = collection.create_index([{"name", ASCENDING}])
     return name_index
+
+# Com index as pesquisas ficam mais rapidas
+def sort_with_index():
+    res = collection.find().sort("name", ASCENDING)
+    for i in res:
+        print(i)

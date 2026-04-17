@@ -174,3 +174,9 @@ def sort_with_index():
     res = collection.find().sort("name", ASCENDING)
     for i in res:
         print(i)
+
+def analise_explain():
+    res = collection.find({"name": "Pikachu"}).sort("type", -1).explain()['executionStats']
+    print(f"Tempo de execução (ms): {res['executionTimeMillis']}")
+    print(f"Documentos examinados: {res['totalDocsExamined']}")
+    print(f"Documentos retornados: {res['nReturned']}")

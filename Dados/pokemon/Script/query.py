@@ -166,7 +166,7 @@ def update_pull():
     return "Removendo um som especifico do pikachu"
 
 def create_index_in_name():
-    name_index = collection.create_index([{"name", ASCENDING}])
+    name_index = collection.create_index([("name", ASCENDING)])
     return name_index
 
 # Com index as pesquisas ficam mais rapidas
@@ -180,3 +180,7 @@ def analise_explain():
     print(f"Tempo de execução (ms): {res['executionTimeMillis']}")
     print(f"Documentos examinados: {res['totalDocsExamined']}")
     print(f"Documentos retornados: {res['nReturned']}")
+
+def drop_index():
+    collection.drop_index([("name", ASCENDING)])
+    return 'Index excluido'

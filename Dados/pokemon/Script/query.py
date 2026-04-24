@@ -169,6 +169,11 @@ def create_index_in_name():
     name_index = collection.create_index([("name", ASCENDING)])
     return name_index
 
+def create_index_array():
+    collection.create_index([("types", 1)]) # 1 ASCENDING, -1 DESCENDING
+    return "Criando index para tipos"
+
+
 # Com index as pesquisas ficam mais rapidas
 def sort_with_index():
     res = collection.find().sort("name", ASCENDING)
@@ -184,3 +189,5 @@ def analise_explain():
 def drop_index():
     collection.drop_index([("name", ASCENDING)])
     return 'Index excluido'
+
+print(create_index_array())

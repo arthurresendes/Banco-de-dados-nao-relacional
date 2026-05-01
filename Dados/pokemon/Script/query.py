@@ -193,3 +193,6 @@ def analise_explain():
 def drop_index():
     collection.drop_index([("name", ASCENDING)])
     return 'Index excluido'
+
+def see_stats():
+    return db.command("dbStats")

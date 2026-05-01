@@ -196,3 +196,11 @@ def drop_index():
 
 def see_stats():
     return db.command("dbStats")
+
+def explain_name():
+    res = collection.find({"name": "Pikachu"}).explain()
+    return res
+
+def explain_speed():
+    res = collection.find({"speed":{"$eq": 80}}).explain()
+    return res

@@ -204,3 +204,9 @@ def explain_name():
 def explain_speed():
     res = collection.find({"speed":{"$eq": 80}}).explain()
     return res
+
+def only_legendary():
+    pipeline = [{"$match": {"legendary": True}}]
+    res = collection.aggregate(pipeline)
+    for i in res:
+        print(i)

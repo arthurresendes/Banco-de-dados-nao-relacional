@@ -8,6 +8,7 @@ cliente = MongoClient(os.getenv("MONGO_URI"))
 
 db = cliente["pokemon_center"]
 collection  = db["pokemon"]
+collection_fight = db["fight"]
 
 def lendarios_count():
     queryLendario = {"legendary": {"$eq": True}}
@@ -216,3 +217,16 @@ def group_pokemon():
     res = collection.aggregate(pipeline)
     for i in res:
         print(i)
+
+def join_first_pokemon():
+    pipeline = [
+        {
+            "$lookup": {
+                "from": "pokemon", # Tabela que puxa da onde vem os dados
+                "localField": "First_pokemon", # Campo da coleção do fight
+                "foreignField": "_id", # Campo de comparação
+                "as": "pokemon1" # Se chama pokemon1
+            }
+        }
+    ]
+    return collection_fight.aggregate(pipeline)

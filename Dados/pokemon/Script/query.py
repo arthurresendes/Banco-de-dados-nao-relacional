@@ -210,3 +210,9 @@ def only_legendary():
     res = collection.aggregate(pipeline)
     for i in res:
         print(i)
+
+def group_pokemon():
+    pipeline = [{ "$group": { "_id": None,"total_poderes": { "$sum": {"$add": ["$defense", "$attack", "$speed"]}},"media_poderes": { "$avg": {"$add": ["$defense", "$attack", "$speed"]}}}}]
+    res = collection.aggregate(pipeline)
+    for i in res:
+        print(i)

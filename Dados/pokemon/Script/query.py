@@ -230,3 +230,18 @@ def join_first_pokemon():
         }
     ]
     return collection_fight.aggregate(pipeline)
+
+def join_second_pokemon():
+    pipeline = [
+        {
+            "$lookup":{
+                "from": "pokemon",
+                "localField": "Second_pokemon",
+                "foreignField": "_id",
+                "as": "pokemon2"
+            }
+        }
+    ]
+    
+    return collection_fight.aggregate(pipeline)
+

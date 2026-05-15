@@ -270,11 +270,11 @@ def join_first_and_two():
 def winner():
     pipeline = [
         {
-            "$lookup": {
-                "from": "pokemon",
-                "localField": "First_pokemon",
-                "foreignField": "_id",
-                "as": "pokemon1"
+            "$lookup": { # Join
+                "from": "pokemon", # De
+                "localField": "First_pokemon", # Nome do campo
+                "foreignField": "_id", # Campo que liga
+                "as": "pokemon1" # Nome que sera abreviado
             }   
         },
         {
@@ -286,20 +286,20 @@ def winner():
             }
         },
         {
-            "$project": {
-                "_id": 0,
-                "Winner": 1,
-                "pokemon1": { "$arrayElemAt": ["$pokemon1", 0] },
+            "$project": { # Utilizado para selecionar/remover/transformar campos que passam para proxima etapa, no caso pokemon1 e pokemon2
+                "_id": 0, # Remove id
+                "Winner": 1, # Mantem o campo Winner
+                "pokemon1": { "$arrayElemAt": ["$pokemon1", 0] }, # Pega o array de informações
                 "pokemon2": { "$arrayElemAt": ["$pokemon2", 0] }
             }
         },
         {
             "$project": {
-                "WinnerName": {
+                "WinnerName": { # Novo campo
                     "$cond": {
-                        "if": { "$eq": ["$Winner", "$pokemon1._id"] },
+                        "if": { "$eq": ["$Winner", "$pokemon1._id"] }, # Se Winner == pokemon1_id retorna pokemon1.name
                         "then": "$pokemon1.name",
-                        "else": "$pokemon2.name"
+                        "else": "$pokemon2.name" # Se nao traz o nome do pokemon2
                     }
                 }
             }

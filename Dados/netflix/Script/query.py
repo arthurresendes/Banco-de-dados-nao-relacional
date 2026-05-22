@@ -21,3 +21,7 @@ def simple_find(title: str):
     res = collection.find({"title": title})
     for i in res:
         print(i)
+
+def simple_delete(title: str):
+    collection.delete_one({"title": title})
+    return "Sucess delete"

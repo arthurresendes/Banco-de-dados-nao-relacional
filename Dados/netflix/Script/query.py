@@ -25,3 +25,7 @@ def simple_find(title: str):
 def simple_delete(title: str):
     collection.delete_one({"title": title})
     return "Sucess delete"
+
+def simple_insert():
+    collection.insert_one({"type": "TV Show", "title": "The Boys", "date_added": {"$date": "2019-07-26T00:00:00.000Z"}, "release_year": 2019, "rating": "TV-MA", "duration": "4 Seasons", "description": "A fun and irreverent take on what happens when superheroes abuse their superpowers rather than use them for good.", "_id": 81045239, "cast": ["Karl Urban", "Jack Quaid", "Antony Starr", "Erin Moriarty"], "countries": ["United States"], "directors": ["Eric Kripke"], "listed_in": ["Action TV Shows", "TV Sci-Fi & Fantasy", "TV Dramas"]})
+    return "Sucess add"

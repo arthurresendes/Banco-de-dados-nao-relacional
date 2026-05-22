@@ -16,3 +16,8 @@ def find_release_year():
     res = collection.find({"release_year": {"$lt": 2010}})
     for i in res:
         print(i)
+
+def simple_find(title: str):
+    res = collection.find({"title": title})
+    for i in res:
+        print(i)

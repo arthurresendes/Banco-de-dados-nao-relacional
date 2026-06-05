@@ -12,7 +12,8 @@ collection  = db["informations"]
 def create_index_release_year():
     collection.create_index([("release_year",1)])
 
-
+def create_index_title():
+    collection.create_index([("title",ASCENDING)])
 
 def find_release_year():
     res = collection.find({"release_year": {"$lt": 2010}})

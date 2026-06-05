@@ -39,6 +39,10 @@ def seculo_2000():
     res = collection.find({"release_year": {"$gte": 2000}})
     return list(res)
 
+def seculo_passado():
+    res = list(collection.find({"release_year": {"$lte": 1999}}))
+    return res
+
 def verificar_ator(name: str):
     res = list(collection.find({"cast": {"$in":  [name]}}))
     if len(res) > 0:

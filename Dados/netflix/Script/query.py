@@ -14,13 +14,11 @@ def create_index_release_year():
 
 def find_release_year():
     res = collection.find({"release_year": {"$lt": 2010}})
-    for i in res:
-        print(i)
+    return list(res)
 
 def simple_find(title: str):
     res = collection.find({"title": title})
-    for i in res:
-        print(i)
+    return list(res)
 
 def simple_delete(title: str):
     collection.delete_one({"title": title})

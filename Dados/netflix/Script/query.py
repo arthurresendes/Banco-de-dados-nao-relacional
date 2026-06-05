@@ -34,6 +34,14 @@ def simple_update(title: str):
     collection.update_one(query,new_param)
     return "Sucess update"
 
+# Operadores de comparação
 def seculo_2000():
     res = collection.find({"release_year": {"$gte": 2000}})
     return list(res)
+
+def verificar_ator(name: str):
+    res = list(collection.find({"cast": {"$in":  [name]}}))
+    if len(res) > 0:
+        return res
+    else:
+        return "Nome não encontrado em filmes ou series"

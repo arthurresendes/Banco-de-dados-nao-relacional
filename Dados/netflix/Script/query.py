@@ -49,3 +49,12 @@ def verificar_ator(name: str):
         return res
     else:
         return "Nome não encontrado em filmes ou series"
+
+# Operadores logicos
+def escolher_ano_ate_ano(anoInicio: int, anoFim: int):
+    res = list(collection.find({"$and": [{"release_year": {"$gte": anoInicio, "$lte": anoFim}}]}))
+    return res
+
+def busca_por_nomes_semelhantes(name1:str, name2: str):
+    res = list(collection.find({"$or": [{"title": {"$eq": name1}},{"title":  {"$eq": name2}}]}))
+    return res

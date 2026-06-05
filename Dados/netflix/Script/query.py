@@ -12,6 +12,8 @@ collection  = db["informations"]
 def create_index_release_year():
     collection.create_index([("release_year",1)])
 
+
+
 def find_release_year():
     res = collection.find({"release_year": {"$lt": 2010}})
     return list(res)
@@ -57,4 +59,8 @@ def escolher_ano_ate_ano(anoInicio: int, anoFim: int):
 
 def busca_por_nomes_semelhantes(name1:str, name2: str):
     res = list(collection.find({"$or": [{"title": {"$eq": name1}},{"title":  {"$eq": name2}}]}))
+    return res
+
+def busca_ordenada():
+    res = list(collection.find({"listed_in": {"$in": ["Crime TV Shows"]}}).sort('title',-1).limit(5))
     return res

@@ -6,9 +6,8 @@ import os
 load_dotenv()
 cliente = MongoClient(os.getenv("MONGO_URI"))
 
-
 db = cliente["Netflix"]
-collection  = db["attractive"]
+collection  = db["informations"]
 
 def create_index_release_year():
     collection.create_index([("release_year",1)])
@@ -36,3 +35,7 @@ def simple_update(title: str):
     new_param = {"$set": {"release_year": datetime.datetime.now()}}
     collection.update_one(query,new_param)
     return "Sucess update"
+
+def seculo_2000():
+    res = collection.find({"release_year": {"$gte": 2000}})
+    return list(res)

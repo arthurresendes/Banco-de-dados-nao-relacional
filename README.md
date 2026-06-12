@@ -18,6 +18,8 @@ Pasta dedicada ao estudo e aprendizado de conceitos fundamentais de bancos de da
 - **Filtragem** - Métodos de filtragem e consultas avançadas
 - **Limite** - Uso de limites em consultas (LIMIT)
 - **Ordenação** - Ordenação de resultados (SORT)
+- **Indexes** - Criação de índices para otimizar na pesquisa
+- **Aggregation** - Resultado de múltiplas tabelas com campos em comum
 
 ---
 

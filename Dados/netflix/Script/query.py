@@ -65,3 +65,22 @@ def busca_por_nomes_semelhantes(name1:str, name2: str):
 def busca_ordenada():
     res = list(collection.find({"listed_in": {"$in": ["Crime TV Shows"]}}).sort('title',-1).limit(5))
     return res
+
+def deletar(nome):
+    query = {"title": {"$eq": nome}}
+    res = list(collection.find(query))
+    if res:
+        collection.delete_one(query)
+        return 'Sucess'
+    else:
+        return 'Nome não encontrado'
+
+def atualizar(nome, ator):
+    filtro = {"title": {"$eq": nome}}
+    res = list(collection.find(filtro))
+    if res:
+        atualizacao = {"$push": {"cast": ator}}
+        collection.update_one(filtro, atualizacao)
+        return 'Atualizado'
+    else:
+        return 'Nome não encontrado'

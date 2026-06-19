@@ -1,5 +1,6 @@
 from fastapi import APIRouter, status,HTTPException
-from query import simple_find,seculo_passado,busca_ordenada,verificar_ator
+from query import simple_find,seculo_passado,busca_ordenada,verificar_ator,deletar,atualizar
+from Schemas import Atualizar
 
 router = APIRouter(prefix="/api/v1")
 
@@ -31,3 +32,17 @@ def ver_especifico(name: str):
             detail="Nome não encontrado em filmes ou series"
         )
     return {"Aparições": res}
+
+@router.patch("/atualizando" , tags=["PATCH"], summary="Adicionando ator ao cast", status_code=status.HTTP_202_ACCEPTED)
+def atualizar_cast(infos: Atualizar):
+    res = atualizar(infos.nome, infos.ator)
+    if res != "Atualizado":
+        raise HTTPException(detail="Titulo não encontrado", status_code=status.HTTP_404_NOT_FOUND)
+    return {"Mensagem": f"{infos.ator} adicionado ao cast com sucesso"}
+
+@router.delete("/delete_per_name", status_code=status.HTTP_204_NO_CONTENT, tags=["DELETE"], summary="Deletando por nome")
+def deletando_por_nome(nome: str):
+    res = deletar(nome)
+    if res != "Sucess":
+        raise HTTPException(detail="Titulo não encontrado", status_code=status.HTTP_404_NOT_FOUND)
+    return {"Mensagem": f"{nome} Deletado com sucesso"}

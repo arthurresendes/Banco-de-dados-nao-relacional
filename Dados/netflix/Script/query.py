@@ -2,6 +2,8 @@ from pymongo import MongoClient,ASCENDING
 from dotenv import load_dotenv
 import datetime
 import os
+import uuid
+from datetime import datetime
 
 load_dotenv()
 cliente = MongoClient(os.getenv("MONGO_URI"))
@@ -84,3 +86,11 @@ def atualizar(nome, ator):
         return 'Atualizado'
     else:
         return 'Nome não encontrado'
+
+def adicionando_novo_objeto(tipo, nome, ano, raiting, duration, description, cast, paises, directos, listed):
+    collection.insert_one({"_id": str(uuid.uuid4()),"type": tipo, "title": nome, "date_added":{'$date': datetime.now().isoformat()},
+                            "release_year": ano, 'raiting': raiting, 'duration': duration,
+                            'description': description, 'cast': cast, 'countries': paises,
+                            'directors': directos, 'listed_in': listed})
+    return 'Adicionado'
+

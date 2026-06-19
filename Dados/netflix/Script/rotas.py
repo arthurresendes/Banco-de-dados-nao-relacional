@@ -1,6 +1,6 @@
 from fastapi import APIRouter, status,HTTPException
-from query import simple_find,seculo_passado,busca_ordenada,verificar_ator,deletar,atualizar
-from Schemas import Atualizar
+from query import simple_find,seculo_passado,busca_ordenada,verificar_ator,deletar,atualizar,adicionando_novo_objeto
+from Schemas import Atualizar,Adicionar
 
 router = APIRouter(prefix="/api/v1")
 
@@ -11,7 +11,12 @@ def padrao():
 @router.get("/see_especific/{title}",tags=["GET"], status_code=status.HTTP_200_OK, summary="Ver filme ou serie com busca por título")
 def ver_especifico(title: str):
     res = simple_find(title)
-    return {"Catalogo": res}
+    if res:
+        if "_id" in res:
+            res["_id"] = str(res["_id"])
+        return res
+        
+    raise HTTPException(status_code=404, detail="Item não encontrado")
 
 @router.get("/netflix_lt_2000",tags=["GET"], status_code=status.HTTP_200_OK, summary="Ver filme ou serie antes de 2000")
 def abaixo_2000():
@@ -32,6 +37,13 @@ def ver_especifico(name: str):
             detail="Nome não encontrado em filmes ou series"
         )
     return {"Aparições": res}
+
+@router.post("/adicionando_novo", tags=["POST"], summary="Adicionando novo filme/série", status_code=status.HTTP_201_CREATED)
+def adicionando_novo(obj: Adicionar):
+    res = adicionando_novo_objeto(obj.tipo,obj.nome,obj.ano,obj.raiting,obj.duration,obj.description,obj.cast,obj.paises,obj.directors,obj.listed)
+    if res:
+        return {'Mensagem': 'Sucess', 'Objeto': obj}
+    raise HTTPException(detail="Erro ao adicionar", status_code=status.HTTP_404_NOT_FOUND)
 
 @router.patch("/atualizando" , tags=["PATCH"], summary="Adicionando ator ao cast", status_code=status.HTTP_202_ACCEPTED)
 def atualizar_cast(infos: Atualizar):

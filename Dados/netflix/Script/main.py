@@ -2,7 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from rotas import router
 
-app = FastAPI(title="API-Netflix")
+app = FastAPI(title="API-Netflix",version="1.0.0")
 app.include_router(router)
 
 if __name__ == "__main__":

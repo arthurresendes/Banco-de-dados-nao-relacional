@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { verFilmes1900 } from '../api/filmes1900'
 
-const VerDecada1900 = () => {
+const VerSeculo1900 = () => {
     const [dados, setDados] = useState([])
     useEffect(() => {
         const buscarDados = async () => {
@@ -32,4 +32,4 @@ const VerDecada1900 = () => {
     )
 }
 
-export default VerDecada1900
+export default VerSeculo1900

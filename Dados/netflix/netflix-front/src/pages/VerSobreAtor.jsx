@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
-import { buscaPorNome } from '../api/buscaPorNome'
+import { buscaPorAtor } from '../api/buscaPorAtor'
 
-const VerPorNome = () => {
+const VerSobreAtor = () => {
     const [busca, setBusca] = useState('')
     const [res, setRes] = useState([])
     const handleSearch = async (e) => {
         e.preventDefault()
-        const dados = await buscaPorNome(busca)
+        const dados = await buscaPorAtor(busca)
         setRes(dados)
     }
     return (
         <div>
             <form action="" onSubmit={handleSearch}>
                 <label htmlFor="">
-                    Nome do filme
+                    Nome do ator
                     <input type="text" name="" id="" value={busca} onChange={(e) => setBusca(e.target.value)} />
                     <input type="submit" value="Enviar" />
                 </label>
@@ -41,4 +41,4 @@ const VerPorNome = () => {
     )
 }
 
-export default VerPorNome
+export default VerSobreAtor

@@ -3,6 +3,7 @@ import NavBar from './components/NavBar'
 import VerTop5 from './pages/VerTop5'
 import VerSeculo1900 from './pages/VerSeculo1900'
 import VerPorNome from './pages/VerPorNome'
+import VerSobreAtor from './pages/VerSobreAtor'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<VerTop5 />} />
         <Route path="/seculo-1900" element={<VerSeculo1900 />} />
         <Route path="/find-name" element={<VerPorNome />} />
+        <Route path="/find-actor" element={<VerSobreAtor />} />
       </Routes>
     </BrowserRouter>
   )

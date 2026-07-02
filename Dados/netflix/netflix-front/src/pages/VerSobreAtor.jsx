@@ -4,10 +4,17 @@ import { buscaPorAtor } from '../api/buscaPorAtor'
 const VerSobreAtor = () => {
     const [busca, setBusca] = useState('')
     const [res, setRes] = useState([])
+    const [erro, setErro] = useState(null)
     const handleSearch = async (e) => {
         e.preventDefault()
-        const dados = await buscaPorAtor(busca)
-        setRes(dados)
+        setRes([])
+        setErro(null)
+        try {
+            const dados = await buscaPorAtor(busca)
+            setRes(dados)
+        } catch (err) {
+            setErro(err.message)
+        }
     }
     return (
         <div>
@@ -37,6 +44,7 @@ const VerSobreAtor = () => {
                     ))}
                 </ul>
             )}
+            {erro != null && <p>{erro}</p>}
         </div>
     )
 }

@@ -52,9 +52,9 @@ def atualizar_cast(infos: Atualizar):
         raise HTTPException(detail="Titulo não encontrado", status_code=status.HTTP_404_NOT_FOUND)
     return {"Mensagem": f"{infos.ator} adicionado ao cast com sucesso"}
 
-@router.delete("/delete_per_name", status_code=status.HTTP_204_NO_CONTENT, tags=["DELETE"], summary="Deletando por nome")
-def deletando_por_nome(nome: str):
-    res = deletar(nome)
+@router.delete("/delete_per_name/{name}", status_code=status.HTTP_204_NO_CONTENT, tags=["DELETE"], summary="Deletando por nome")
+def deletando_por_nome(name: str):
+    res = deletar(name)
     if res != "Sucess":
         raise HTTPException(detail="Titulo não encontrado", status_code=status.HTTP_404_NOT_FOUND)
-    return {"Mensagem": f"{nome} Deletado com sucesso"}
+    return {"Mensagem": f"{name} Deletado com sucesso"}

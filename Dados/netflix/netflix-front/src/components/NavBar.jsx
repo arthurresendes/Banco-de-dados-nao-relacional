@@ -9,7 +9,8 @@ const NavBar = () => {
         { to: '/', label: 'Top 5 Netflix' },
         { to: '/seculo-1900', label: 'Filmes Anos 1900' },
         { to: '/find-name', label: 'Busca por nome' },
-        { to: '/find-actor', label: 'Busca por nome' },
+        { to: '/find-actor', label: 'Busca por ator' },
+        { to: '/delete-movie', label: 'Deletar por nome' },
     ]
 
     return (

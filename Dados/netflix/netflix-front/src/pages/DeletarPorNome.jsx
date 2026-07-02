@@ -19,7 +19,6 @@ const DeletarPorNome = () => {
     }
     return (
         <div>
-            <br />
             <form action="" onSubmit={handleDelete}>
                 <label htmlFor="">
                     Nome do filme

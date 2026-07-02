@@ -14,7 +14,7 @@ const NavBar = () => {
     ]
 
     return (
-        <nav>
+        <nav style={{ paddingBottom: '5px' }}>
             {links.map(({ to, label }) => (
                 <Link
                     key={to}

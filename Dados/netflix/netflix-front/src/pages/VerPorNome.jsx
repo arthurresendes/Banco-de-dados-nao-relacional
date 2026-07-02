@@ -4,10 +4,17 @@ import { buscaPorNome } from '../api/buscaPorNome'
 const VerPorNome = () => {
     const [busca, setBusca] = useState('')
     const [res, setRes] = useState([])
+    const [erro, setErro] = useState(null)
     const handleSearch = async (e) => {
         e.preventDefault()
-        const dados = await buscaPorNome(busca)
-        setRes(dados)
+        setRes([])
+        setErro(null)
+        try {
+            const dados = await buscaPorNome(busca)
+            setRes(dados)
+        } catch (err) {
+            setErro(err.message)
+        }
     }
     return (
         <div>
@@ -18,7 +25,7 @@ const VerPorNome = () => {
                     <input type="submit" value="Enviar" />
                 </label>
             </form>
-
+            <hr />
             {res && res.length > 0 && (
                 <ul>
                     {res.map((filme) => (
@@ -37,6 +44,7 @@ const VerPorNome = () => {
                     ))}
                 </ul>
             )}
+            {erro != null && <p>{erro}</p>}
         </div>
     )
 }

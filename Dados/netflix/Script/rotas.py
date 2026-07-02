@@ -57,4 +57,4 @@ def deletando_por_nome(name: str):
     res = deletar(name)
     if res != "Sucess":
         raise HTTPException(detail="Titulo não encontrado", status_code=status.HTTP_404_NOT_FOUND)
-    return {"Mensagem": f"{name} Deletado com sucesso"}
+    return None

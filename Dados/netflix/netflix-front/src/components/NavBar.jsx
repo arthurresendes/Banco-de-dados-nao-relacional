@@ -11,6 +11,7 @@ const NavBar = () => {
         { to: '/find-name', label: 'Busca por nome' },
         { to: '/find-actor', label: 'Busca por ator' },
         { to: '/delete-movie', label: 'Deletar por nome' },
+        { to: '/update-cast', label: 'Atualizar Cast' },
     ]
 
     return (

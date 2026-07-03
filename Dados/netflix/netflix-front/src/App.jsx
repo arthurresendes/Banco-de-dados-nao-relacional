@@ -5,6 +5,7 @@ import VerSeculo1900 from './pages/VerSeculo1900'
 import VerPorNome from './pages/VerPorNome'
 import VerSobreAtor from './pages/VerSobreAtor'
 import DeletarPorNome from './pages/DeletarPorNome'
+import UpdateCast from './pages/UpdateCast'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/find-name" element={<VerPorNome />} />
         <Route path="/find-actor" element={<VerSobreAtor />} />
         <Route path="/delete-movie" element={<DeletarPorNome />} />
+        <Route path="/update-cast" element={<UpdateCast />} />
       </Routes>
     </BrowserRouter>
   )

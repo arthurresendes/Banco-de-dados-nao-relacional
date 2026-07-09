@@ -1,5 +1,5 @@
 from fastapi import APIRouter, status,HTTPException
-from query import simple_find,seculo_passado,busca_ordenada,verificar_ator,deletar,atualizar,adicionando_novo_objeto
+from query import simple_find,seculo_passado,busca_ordenada,verificar_ator,deletar,atualizar,adicionando_novo_objeto,tipos_de_filmes_series
 from Schemas import Atualizar,Adicionar
 
 router = APIRouter(prefix="/api/v1")
@@ -37,6 +37,11 @@ def ver_especifico(name: str):
             detail="Nome não encontrado em filmes ou series"
         )
     return {"Aparições": res}
+
+@router.get("/see_all_types", tags=["GET"], summary="Ver todos tipos de série/filmes que tem.", status_code=status.HTTP_200_OK)
+def ver_tipos():
+    todos_tipos = tipos_de_filmes_series()
+    return {"Types": todos_tipos}
 
 @router.post("/adicionando_novo", tags=["POST"], summary="Adicionando novo filme/série", status_code=status.HTTP_201_CREATED)
 def adicionando_novo(obj: Adicionar):

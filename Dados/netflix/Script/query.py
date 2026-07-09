@@ -68,6 +68,10 @@ def busca_ordenada():
     res = list(collection.find({"listed_in": {"$in": ["Crime TV Shows"]}}).sort('title',-1).limit(5))
     return res
 
+def tipos_de_filmes_series():
+    res = list(collection.distinct("listed_in"))
+    return res
+
 def deletar(nome):
     query = {"title": {"$eq": nome}}
     res = list(collection.find(query))

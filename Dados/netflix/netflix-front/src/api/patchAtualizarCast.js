@@ -1,5 +1,5 @@
 export const atualizarCast = async (dados) => {
-  const URL = "http://127.0.0.1:8000/api/v1/atualizando";
+  const URL = "http://localhost:8000/api/v1/atualizando";
   const res = await fetch(URL, {
     method: "PATCH",
     headers: {

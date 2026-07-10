@@ -64,8 +64,8 @@ def busca_por_nomes_semelhantes(name1:str, name2: str):
     res = list(collection.find({"$or": [{"title": {"$eq": name1}},{"title":  {"$eq": name2}}]}))
     return res
 
-def busca_ordenada():
-    res = list(collection.find({"listed_in": {"$in": ["Crime TV Shows"]}}).sort('title',-1).limit(5))
+def busca_ordenada(type: str):
+    res = list(collection.find({"listed_in": {"$in": [type]}}).sort('title',-1).limit(5))
     return res
 
 def tipos_de_filmes_series():

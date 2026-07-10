@@ -23,9 +23,9 @@ def abaixo_2000():
     res = seculo_passado()
     return {"Catalogo": res}
 
-@router.get("/criminal_shows", tags=["GET"], status_code=status.HTTP_200_OK, summary="5 Criminals show ordenados descendente por title")
-def desc_criminal():
-    res = busca_ordenada()
+@router.get("/especifics_types/{type}", tags=["GET"], status_code=status.HTTP_200_OK, summary="5 shows de acordo com o tipo selecionado pelo user")
+def desc_show(type: str):
+    res = busca_ordenada(type)
     return {"Shows": res}
 
 @router.get("/see_actor_especific/{name}",tags=["GET"], status_code=status.HTTP_200_OK, summary="Ver filme ou serie que um ator esteve presente")

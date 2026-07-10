@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { top5 } from '../api/top5'
-import { verTodosTipos } from '../api/verTodosTipos'
+import { top5 } from '../api/getTop5'
+import { verTodosTipos } from '../api/getVerTodosTipos'
 
 const VerTop5 = () => {
     const [dados, setDados] = useState([])

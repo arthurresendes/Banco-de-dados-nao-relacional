@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { atualizarCast } from '../api/atualizarCast'
+import { atualizarCast } from '../api/patchAtualizarCast'
 
 const UpdateCast = () => {
     const [erro, setErro] = useState(null)

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { verFilmes1900 } from '../api/filmes1900'
+import { verFilmes1900 } from '../api/getFilmes1900'
 
 const VerSeculo1900 = () => {
     const [dados, setDados] = useState([])

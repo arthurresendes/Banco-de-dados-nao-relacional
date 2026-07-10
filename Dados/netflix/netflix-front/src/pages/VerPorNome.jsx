@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { buscaPorNome } from '../api/buscaPorNome'
+import { buscaPorNome } from '../api/getBuscaPorNome'
 
 const VerPorNome = () => {
     const [busca, setBusca] = useState('')

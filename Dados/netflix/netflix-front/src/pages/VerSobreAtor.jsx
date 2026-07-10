@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { buscaPorAtor } from '../api/buscaPorAtor'
+import { buscaPorAtor } from '../api/getBuscaPorAtor'
 
 const VerSobreAtor = () => {
     const [busca, setBusca] = useState('')

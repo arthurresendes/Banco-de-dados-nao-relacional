@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { verFilmes1900 } from '../api/getFilmes1900'
+import { GetAnos90 } from '../context/GetAnos90Provider'
 
 const VerSeculo1900 = () => {
-    const [dados, setDados] = useState([])
+    const { dados, setDados } = useContext(GetAnos90)
     useEffect(() => {
         const buscarDados = async () => {
             const res = await verFilmes1900()

@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { buscaPorNome } from '../api/getBuscaPorNome'
+import { GetFilmeName } from '../context/GetFilmeNameProvider'
 
 const VerPorNome = () => {
-    const [busca, setBusca] = useState('')
-    const [res, setRes] = useState([])
-    const [erro, setErro] = useState(null)
+    const { busca, setBusca, res, setRes, erro, setErro } = useContext(GetFilmeName)
     const handleSearch = async (e) => {
         e.preventDefault()
         setRes([])

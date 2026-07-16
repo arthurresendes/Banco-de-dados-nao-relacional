@@ -47,7 +47,7 @@ def ver_tipos():
 def adicionando_novo(obj: Adicionar):
     res = adicionando_novo_objeto(obj.tipo,obj.nome,obj.ano,obj.raiting,obj.duration,obj.description,obj.cast,obj.paises,obj.directors,obj.listed)
     if res:
-        return {'Mensagem': 'Sucess', 'Objeto': obj}
+        return {'Mensagem': 'Cadastrado com sucesso', 'Objeto': obj}
     raise HTTPException(detail="Erro ao adicionar", status_code=status.HTTP_404_NOT_FOUND)
 
 @router.patch("/atualizando" , tags=["PATCH"], summary="Adicionando ator ao cast", status_code=status.HTTP_202_ACCEPTED)

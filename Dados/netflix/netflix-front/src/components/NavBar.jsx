@@ -1,6 +1,4 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 const NavBar = () => {
     const location = useLocation()
@@ -12,15 +10,16 @@ const NavBar = () => {
         { to: '/find-actor', label: 'Busca por ator' },
         { to: '/delete-movie', label: 'Deletar por nome' },
         { to: '/update-cast', label: 'Atualizar Cast' },
+        { to: '/register', label: 'Cadastrar filme/série' },
     ]
 
     return (
-        <nav style={{ paddingBottom: '5px' }}>
+        <nav className="navbar">
             {links.map(({ to, label }) => (
                 <Link
                     key={to}
                     to={to}
-                    style={{ marginRight: '1rem', fontWeight: location.pathname === to ? 'bold' : 'normal' }}
+                    className={location.pathname === to ? "active" : ""}
                 >
                     {label}
                 </Link>

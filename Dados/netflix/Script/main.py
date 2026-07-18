@@ -6,6 +6,8 @@ from rotas import router
 app = FastAPI(title="API-Netflix",version="1.0.0")
 
 origins = [
+    "http://localhost",    
+    "http://localhost:80",
     "http://localhost:3000",     
     "http://localhost:5173",   
 ]

@@ -6,7 +6,7 @@ import random
 from datetime import datetime
 
 load_dotenv()
-cliente = MongoClient(os.getenv("MONGO_URI"))
+cliente = MongoClient(os.getenv("MONGO_ATLAS_URI"))
 
 db = cliente["Netflix"]
 collection  = db["informations"]

@@ -9,7 +9,8 @@ origins = [
     "http://localhost",    
     "http://localhost:80",
     "http://localhost:3000",     
-    "http://localhost:5173",   
+    "http://localhost:5173",  
+    "https://streamingmongo.vercel.app",
 ]
 
 app.add_middleware(

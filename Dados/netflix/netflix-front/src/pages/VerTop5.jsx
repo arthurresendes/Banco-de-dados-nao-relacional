@@ -22,6 +22,9 @@ const VerTop5 = () => {
     return (
         <div>
             <form action="" onSubmit={handleSubmit}>
+                <label htmlFor="">
+                    Ver 5 filmes/séries de acordo com seus tipos
+                </label>
                 <select name="" value={type} id="" onChange={(e) => setType(e.target.value)}>
                     {dados.map((tipos) => (
                         <option value={tipos}>{tipos}</option>

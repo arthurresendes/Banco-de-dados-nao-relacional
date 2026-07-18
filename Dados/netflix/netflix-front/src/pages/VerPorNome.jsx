@@ -19,7 +19,7 @@ const VerPorNome = () => {
         <div>
             <form action="" onSubmit={handleSearch}>
                 <label htmlFor="">
-                    Nome do filme
+                    Nome do filme/série
                     <input type="text" name="" id="" value={busca} onChange={(e) => setBusca(e.target.value)} />
                     <input type="submit" value="Enviar" />
                 </label>

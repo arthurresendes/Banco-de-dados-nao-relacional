@@ -1,6 +1,6 @@
 export const deleteMovie = async (name) => {
-  const URL = `http://localhost:8000/api/v1/delete_per_name/${name}`;
-  const res = await fetch(URL, {
+  const URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+  const res = await fetch(`${URL}/api/v1/delete_per_name/${name}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

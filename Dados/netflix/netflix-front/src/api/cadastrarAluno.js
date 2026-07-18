@@ -1,7 +1,7 @@
-const URL = "http://localhost:8000/api/v1/adicionando_novo";
+const URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 export const cadastrando = async (dados) => {
-  const res = await fetch(URL, {
+  const res = await fetch(`${URL}/api/v1/adicionando_novo`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

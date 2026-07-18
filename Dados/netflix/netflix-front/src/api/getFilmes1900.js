@@ -1,7 +1,7 @@
-const URL = "http://localhost:8000/api/v1/netflix_lt_2000";
+const URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 export const verFilmes1900 = async () => {
-  const res = await fetch(URL);
+  const res = await fetch(`${URL}/api/v1/netflix_lt_2000`);
   const dados = await res.json();
   return dados.Catalogo;
 };

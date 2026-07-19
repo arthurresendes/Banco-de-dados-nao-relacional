@@ -49,10 +49,10 @@ const Cadastro = () => {
             raiting,
             duration,
             description,
-            cast,
-            paises,
-            directors,
-            listed
+            cast: inputCast.trim() ? [...cast, inputCast.trim()] : cast,
+            paises: inputPaises.trim() ? [...paises, inputPaises.trim()] : paises,
+            directors: inputDirectors.trim() ? [...directors, inputDirectors.trim()] : directors,
+            listed: inputListed.trim() ? [...listed, inputListed.trim()] : listed
         }
         try {
             const cadastrar = await cadastrando(dados)
@@ -68,7 +68,7 @@ const Cadastro = () => {
             <form action="" onSubmit={handleSubmit}>
                 <label htmlFor="nome" className='nome'>
                     <span>Nome</span>
-                    <input type="text" name="nome" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} />
+                    <input type="text" name="nome" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} required />
                 </label>
 
                 <label>
@@ -82,22 +82,22 @@ const Cadastro = () => {
 
                 <label htmlFor="ano" className='ano'>
                     <span>Ano</span>
-                    <input type="number" name="ano" id="ano" value={ano} onChange={(e) => setAno(e.target.value)} />
+                    <input type="number" name="ano" id="ano" value={ano} onChange={(e) => setAno(e.target.value)} required />
                 </label>
 
                 <label htmlFor="raiting" className='raiting'>
                     <span>Rating</span>
-                    <input type="text" name="raiting" id="raiting" value={raiting} onChange={(e) => setRaiting(e.target.value)} />
+                    <input type="text" name="raiting" id="raiting" value={raiting} onChange={(e) => setRaiting(e.target.value)} required />
                 </label>
 
                 <label htmlFor="duration" className='duration'>
                     <span>Duração</span>
-                    <input type="text" name="duration" id="duration" value={duration} onChange={(e) => setDuration(e.target.value)} />
+                    <input type="text" name="duration" id="duration" value={duration} onChange={(e) => setDuration(e.target.value)} required />
                 </label>
 
                 <label htmlFor="description" className='description'>
                     <span>Descrição</span>
-                    <input type="text" name="description" id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
+                    <input type="text" name="description" id="description" value={description} onChange={(e) => setDescription(e.target.value)} required />
                 </label>
 
                 <label htmlFor="cast" className='cast'>

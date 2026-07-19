@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { buscaPorAtor } from '../api/getBuscaPorAtor'
+import { GetNomeAtor } from '../context/GetNomeAtorProvider'
 
 const VerSobreAtor = () => {
-    const [busca, setBusca] = useState('')
-    const [res, setRes] = useState([])
-    const [erro, setErro] = useState(null)
+    const { busca, setBusca, res, setRes, erro, setErro } = useContext(GetNomeAtor)
     const handleSearch = async (e) => {
         e.preventDefault()
         setRes([])
@@ -44,7 +43,7 @@ const VerSobreAtor = () => {
                     ))}
                 </ul>
             )}
-            {erro != null && <p>{erro}</p>}
+            {erro != null && <p style={{ color: 'red' }}>{erro}</p>}
         </div>
     )
 }

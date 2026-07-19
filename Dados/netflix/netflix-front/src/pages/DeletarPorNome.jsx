@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { deleteMovie } from '../api/deleteMovie'
+import { DeleteFilme } from '../context/DeleteFilmeProvider'
 
 const DeletarPorNome = () => {
-    const [erro, setErro] = useState(null)
-    const [excluir, setExcluir] = useState(false)
-    const [busca, setBusca] = useState("")
-
+    const { erro, setErro, excluir, setExcluir, busca, setBusca } = useContext(DeleteFilme)
     const handleDelete = async (e) => {
         e.preventDefault()
         setExcluir(false)
@@ -28,8 +26,8 @@ const DeletarPorNome = () => {
             </form>
 
             <hr />
-            {excluir && <p>Filme/Seríe excluido com sucesso</p>}
-            {erro != null && <p>{erro}</p>}
+            {excluir && <p style={{ color: 'green' }}>Filme/Seríe excluido com sucesso</p>}
+            {erro != null && <p style={{ color: 'red' }}>{erro}</p>}
         </div>
     )
 }

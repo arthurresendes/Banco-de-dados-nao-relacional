@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { atualizarCast } from '../api/patchAtualizarCast'
+import { PatchCast } from '../context/PatchCastProvider'
 
 const UpdateCast = () => {
-    const [erro, setErro] = useState(null)
-    const [busca, setBusca] = useState("")
-    const [ator, setAtor] = useState("")
-    const [mensagem, setMensagem] = useState("")
+    const { erro, setErro, busca, setBusca, ator, setAtor, mensagem, setMensagem } = useContext(PatchCast)
 
     const handleUpdate = async (e) => {
         e.preventDefault()

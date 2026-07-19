@@ -7,6 +7,7 @@ import VerSobreAtor from './pages/VerSobreAtor'
 import DeletarPorNome from './pages/DeletarPorNome'
 import UpdateCast from './pages/UpdateCast'
 import Cadastro from './pages/Cadastro'
+import NotFound from './pages/NotFound'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/delete-movie" element={<DeletarPorNome />} />
         <Route path="/update-cast" element={<UpdateCast />} />
         <Route path="/register" element={<Cadastro />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )

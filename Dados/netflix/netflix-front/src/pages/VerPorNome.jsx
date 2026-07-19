@@ -43,7 +43,7 @@ const VerPorNome = () => {
                     ))}
                 </ul>
             )}
-            {erro != null && <p>{erro}</p>}
+            {erro != null && <p style={{ color: 'red' }}>{erro}</p>}
         </div>
     )
 }

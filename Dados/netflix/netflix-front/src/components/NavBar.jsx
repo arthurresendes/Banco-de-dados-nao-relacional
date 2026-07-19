@@ -8,9 +8,9 @@ const NavBar = () => {
         { to: '/seculo-1900', label: 'Filmes Anos 1900' },
         { to: '/find-name', label: 'Busca por nome' },
         { to: '/find-actor', label: 'Busca por ator' },
-        { to: '/delete-movie', label: 'Deletar por nome' },
-        { to: '/update-cast', label: 'Atualizar Cast' },
         { to: '/register', label: 'Cadastrar filme/série' },
+        { to: '/update-cast', label: 'Atualizar Cast' },
+        { to: '/delete-movie', label: 'Deletar por nome' },
     ]
 
     return (

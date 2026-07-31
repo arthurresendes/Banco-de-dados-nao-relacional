@@ -11,7 +11,7 @@ export const deleteMovie = async (name) => {
     throw new Error("Filme não encontrado");
   }
 
-  if (res.status === 409) {
+  if (res.status === 429) {
     throw new Error("Erro ao solicitar requisição. Aguarde!");
   }
 

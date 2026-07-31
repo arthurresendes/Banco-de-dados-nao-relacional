@@ -9,7 +9,7 @@ export const cadastrando = async (dados) => {
     body: JSON.stringify(dados),
   });
 
-  if (res.status === 409) {
+  if (res.status === 429) {
     throw new Error("Erro ao solicitar requisição. Aguarde!");
   }
 

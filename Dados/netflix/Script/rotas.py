@@ -1,7 +1,8 @@
-from fastapi import APIRouter, status,HTTPException
+from fastapi import APIRouter, status,HTTPException, Request
 from query import simple_find,seculo_passado,busca_ordenada,verificar_ator,deletar,atualizar,adicionando_novo_objeto,tipos_de_filmes_series
 from Schemas import Atualizar,Adicionar
 import string
+from limitador import limiter
 
 router = APIRouter(prefix="/api/v1")
 
@@ -47,14 +48,16 @@ def ver_tipos():
     return {"Types": todos_tipos}
 
 @router.post("/adicionando_novo", tags=["POST"], summary="Adicionando novo filme/série", status_code=status.HTTP_201_CREATED)
-def adicionando_novo(obj: Adicionar):
+@limiter.limit('5/minute')
+def adicionando_novo(request: Request,obj: Adicionar):
     res = adicionando_novo_objeto(obj.tipo,obj.nome,obj.ano,obj.raiting,obj.duration,obj.description,obj.cast,obj.paises,obj.directors,obj.listed)
     if res:
         return {'Mensagem': 'Cadastrado com sucesso', 'Objeto': obj}
     raise HTTPException(detail="Erro ao adicionar", status_code=status.HTTP_404_NOT_FOUND)
 
 @router.patch("/atualizando" , tags=["PATCH"], summary="Adicionando ator ao cast", status_code=status.HTTP_202_ACCEPTED)
-def atualizar_cast(infos: Atualizar):
+@limiter.limit('15/minute')
+def atualizar_cast(request: Request,infos: Atualizar):
     nome = string.capwords(infos.nome)
     res = atualizar(nome, infos.ator)
     if res != "Atualizado":
@@ -62,7 +65,8 @@ def atualizar_cast(infos: Atualizar):
     return {"Mensagem": f"{infos.ator} adicionado ao cast com sucesso"}
 
 @router.delete("/delete_per_name/{name}", status_code=status.HTTP_204_NO_CONTENT, tags=["DELETE"], summary="Deletando por nome")
-def deletando_por_nome(name: str):
+@limiter.limit('10/minute')
+def deletando_por_nome(request: Request,name: str):
     name = string.capwords(name)
     res = deletar(name)
     if res != "Sucess":

@@ -13,6 +13,10 @@ export const atualizarCast = async (dados) => {
     throw new Error("Filme não encontrado");
   }
 
+  if (res.status == 409) {
+    throw new Error(`Erro ao solicitar requisição. Aguarde!`);
+  }
+
   if (!res.ok) {
     throw new Error(`Erro insesperado. Código: ${res.status}`);
   }

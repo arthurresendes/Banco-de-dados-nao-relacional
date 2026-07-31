@@ -9,6 +9,10 @@ export const cadastrando = async (dados) => {
     body: JSON.stringify(dados),
   });
 
+  if(res.status == 409){
+    throw new Error(`Erro ao solicitar requisição. Aguarde!`);
+  }
+
   if (!res.ok) {
     throw new Error(`Erro insesperado. Código: ${res.status}`);
   }

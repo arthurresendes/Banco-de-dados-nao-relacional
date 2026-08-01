@@ -1,8 +1,9 @@
-from fastapi import APIRouter, status,HTTPException, Request
-from query import simple_find,seculo_passado,busca_ordenada,verificar_ator,deletar,atualizar,adicionando_novo_objeto,tipos_de_filmes_series
+from fastapi import APIRouter, status,HTTPException, Request, Query
+from query import simple_find,seculo_passado,busca_ordenada,verificar_ator,deletar,atualizar,adicionando_novo_objeto,tipos_de_filmes_series,paginacao
 from Schemas import Atualizar,Adicionar
 import string
 from limitador import limiter
+import math
 
 router = APIRouter(prefix="/api/v1")
 
@@ -25,6 +26,17 @@ def ver_especifico(title: str):
 def abaixo_2000():
     res = seculo_passado()
     return {"Catalogo": res}
+
+@router.get("/netflix_lt_2000_page",tags=["GET"], status_code=status.HTTP_200_OK, summary="Ver filme ou serie antes de 2000 com paginação")
+def abaixo_2000_paginado(pagina: int = Query(1,ge=1)):
+    limite = 50 
+    pular = (pagina - 1) * limite
+    res,total_pag = paginacao(pular,limite)
+    pages_total = math.ceil(total_pag/limite)
+    if pagina > pages_total:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail='Página sem documentos')
+    return {"Catalogo": res, 'TotalPage': pages_total }
+
 
 @router.get("/especifics_types/{type}", tags=["GET"], status_code=status.HTTP_200_OK, summary="5 shows de acordo com o tipo selecionado pelo user")
 def desc_show(type: str):

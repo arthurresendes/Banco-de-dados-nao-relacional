@@ -52,6 +52,12 @@ def seculo_passado():
     res = list(collection.find({"release_year": {"$lte": 1999}}))
     return res
 
+def paginacao(pular,limite):
+    query = {"release_year": {"$lte": 1999}}
+    res = list(collection.find(query).skip(pular).limit(limite))
+    total_documentos = collection.count_documents(query)
+    return res,total_documentos
+
 def verificar_ator(name: str):
     res = list(collection.find({"cast": {"$in":  [name]}}))
     if len(res) > 0:

@@ -3,14 +3,34 @@ import { verFilmes1900 } from '../api/getFilmes1900'
 import { GetAnos90 } from '../context/GetAnos90Provider'
 
 const VerSeculo1900 = () => {
-    const { dados, setDados } = useContext(GetAnos90)
+    const { dados, setDados, page, setPage, totalPage, setTotalPage, carregando, setCarregando } = useContext(GetAnos90)
     useEffect(() => {
         const buscarDados = async () => {
             const res = await verFilmes1900()
-            setDados(res)
+            setDados(res.Catalogo)
+            setTotalPage(res.TotalPage)
         }
         buscarDados()
     }, [])
+
+    const voltar = async () => {
+        setCarregando(true)
+        const novaPagina = page - 1
+        setDados([])
+        setPage(novaPagina)
+        const res = await verFilmes1900(novaPagina)
+        setDados(res.Catalogo)
+        setCarregando(false)
+    }
+    const avancar = async () => {
+        setCarregando(true)
+        const novaPagina = page + 1
+        setDados([])
+        setPage(novaPagina)
+        const res = await verFilmes1900(novaPagina)
+        setDados(res.Catalogo)
+        setCarregando(false)
+    }
     return (
         <div>
             <ul>
@@ -29,6 +49,13 @@ const VerSeculo1900 = () => {
                     </li>
                 ))}
             </ul>
+            {!carregando ? (
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '960px', margin: '0 auto', padding: '0 24px' }}>
+                    <button onClick={voltar} disabled={page === 1} className="btn-pagina">&lsaquo;</button>
+                    <p style={{ margin: 0 }}>{page} / {totalPage}</p>
+                    <button onClick={avancar} disabled={page === totalPage} className="btn-pagina">&rsaquo;</button>
+                </div>
+            ) : <p>Carregando...</p>}
         </div>
     )
 }

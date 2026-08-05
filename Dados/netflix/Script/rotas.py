@@ -29,7 +29,7 @@ def abaixo_2000():
 
 @router.get("/netflix_lt_2000_page",tags=["GET"], status_code=status.HTTP_200_OK, summary="Ver filme ou serie antes de 2000 com paginação")
 def abaixo_2000_paginado(pagina: int = Query(1,ge=1)):
-    limite = 50 
+    limite = 20 
     pular = (pagina - 1) * limite
     res,total_pag = paginacao(pular,limite)
     pages_total = math.ceil(total_pag/limite)

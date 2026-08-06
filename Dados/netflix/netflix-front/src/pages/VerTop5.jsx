@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { top5 } from '../api/getTop5'
 import { verTodosTipos } from '../api/getVerTodosTipos'
+import toast from 'react-hot-toast'
 
 const VerTop5 = () => {
     const [dados, setDados] = useState([])
@@ -17,6 +18,7 @@ const VerTop5 = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const listagem = await top5(type)
+        toast.success(`Top 5 ${type}`)
         setResult(listagem)
     }
     return (

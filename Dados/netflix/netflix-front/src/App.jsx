@@ -8,10 +8,12 @@ import DeletarPorNome from './pages/DeletarPorNome'
 import UpdateCast from './pages/UpdateCast'
 import Cadastro from './pages/Cadastro'
 import NotFound from './pages/NotFound'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
   return (
     <BrowserRouter>
+      <Toaster />
       <NavBar />
       <Routes>
         <Route path="/" element={<VerTop5 />} />

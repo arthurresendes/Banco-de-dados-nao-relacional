@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { buscaPorNome } from '../api/getBuscaPorNome'
 import { GetFilmeName } from '../context/GetFilmeNameProvider'
+import toast from 'react-hot-toast'
 
 const VerPorNome = () => {
     const { busca, setBusca, res, setRes, erro, setErro } = useContext(GetFilmeName)
@@ -10,8 +11,10 @@ const VerPorNome = () => {
         setErro(null)
         try {
             const dados = await buscaPorNome(busca)
+            toast.success('Filme/série encontrada')
             setRes(dados)
         } catch (err) {
+            toast.error(err.message)
             setErro(err.message)
         }
     }

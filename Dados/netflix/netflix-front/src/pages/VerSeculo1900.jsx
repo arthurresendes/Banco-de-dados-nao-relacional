@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { verFilmes1900 } from '../api/getFilmes1900'
 import { GetAnos90 } from '../context/GetAnos90Provider'
+import toast from 'react-hot-toast'
 
 const VerSeculo1900 = () => {
     const { dados, setDados, page, setPage, totalPage, setTotalPage, carregando, setCarregando } = useContext(GetAnos90)
@@ -20,6 +21,7 @@ const VerSeculo1900 = () => {
         setPage(novaPagina)
         const res = await verFilmes1900(novaPagina)
         setDados(res.Catalogo)
+        toast.success(`Página ${novaPagina}/${totalPage}`)
         setCarregando(false)
     }
     const avancar = async () => {
@@ -29,6 +31,7 @@ const VerSeculo1900 = () => {
         setPage(novaPagina)
         const res = await verFilmes1900(novaPagina)
         setDados(res.Catalogo)
+        toast.success(`Página ${novaPagina}/${totalPage}`)
         setCarregando(false)
     }
     return (

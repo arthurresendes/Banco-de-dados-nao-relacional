@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { buscaPorAtor } from '../api/getBuscaPorAtor'
 import { GetNomeAtor } from '../context/GetNomeAtorProvider'
+import toast from 'react-hot-toast'
 
 const VerSobreAtor = () => {
     const { busca, setBusca, res, setRes, erro, setErro } = useContext(GetNomeAtor)
@@ -10,6 +11,7 @@ const VerSobreAtor = () => {
         setErro(null)
         try {
             const dados = await buscaPorAtor(busca)
+            toast.success('Ator encontrado com sucesso')
             setRes(dados)
         } catch (err) {
             setErro(err.message)

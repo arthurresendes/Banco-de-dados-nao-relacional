@@ -7,7 +7,7 @@ import math
 
 router = APIRouter(prefix="/api/v1")
 
-@router.get("/" ,tags=["GET"], status_code=status.HTTP_200_OK, summary="Rota padrão")
+@router.get("/" ,methods=["GET", "HEAD"],tags=["GET"], status_code=status.HTTP_200_OK, summary="Rota padrão")
 def padrao():
     return {"message": "Sucess"}
 

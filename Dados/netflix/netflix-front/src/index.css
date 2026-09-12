@@ -20,9 +20,10 @@
 
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #f8fbff 0%, #eef4ff 45%, #f7f9fc 100%);
+    background: var(--bg);
     color: var(--text);
     line-height: 1.5;
+    letter-spacing: 0.1px;
 }
 
 #root {
@@ -34,39 +35,40 @@ body {
 
 .navbar {
     width: 100%;
-    background: linear-gradient(90deg, #0f172a 0%, #111827 100%);
+    background: #0f172a;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
-    padding: 18px 24px;
-    margin-bottom: 28px;
-    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.16);
+    gap: 4px;
+    padding: 14px 24px;
+    margin-bottom: 32px;
+    border-bottom: 3px solid var(--primary);
 }
 
 .navbar a {
-    color: #e2e8f0;
+    color: #cbd5e1;
     text-decoration: none;
-    padding: 10px 14px;
-    border-radius: 999px;
-    transition: all 0.2s ease;
+    padding: 9px 16px;
+    border-radius: 6px;
+    transition: color 0.15s ease, background 0.15s ease;
     font-weight: 600;
+    font-size: 0.94rem;
     border: 1px solid transparent;
 }
 
 .navbar a:hover,
 .navbar a:focus-visible {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(191, 219, 254, 0.35);
-    transform: translateY(-1px);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.06);
     outline: none;
 }
 
 .navbar a.active {
-    background: linear-gradient(90deg, var(--primary) 0%, #3b82f6 100%);
+    color: #ffffff;
+    background: var(--primary-soft);
+    border-color: rgba(37, 99, 235, 0.5);
     font-weight: 700;
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.24);
 }
 
 main {
@@ -78,13 +80,13 @@ main {
 }
 
 form {
-    width: min(760px, 100%);
+    width: min(720px, 100%);
     margin: 0 auto 24px;
-    background: rgba(255, 255, 255, 0.96);
-    padding: 30px;
-    border-radius: 18px;
+    background: var(--surface);
+    padding: 28px 30px;
+    border-radius: 10px;
     border: 1px solid var(--border);
-    box-shadow: var(--shadow);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -94,27 +96,33 @@ form {
 label {
     display: flex;
     flex-direction: column;
-    gap: 7px;
-    font-weight: 700;
-    color: var(--text);
+    gap: 6px;
+    font-weight: 600;
+    color: var(--muted);
+    font-size: 0.88rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
 }
 
 input,
 select,
 button {
     width: 100%;
-    padding: 12px 14px;
+    padding: 11px 13px;
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 8px;
     font-size: 15px;
     color: var(--text);
     background: var(--surface);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    text-transform: none;
+    letter-spacing: normal;
+    font-weight: 400;
 }
 
 input:hover,
 select:hover {
-    border-color: #93c5fd;
+    border-color: #a8c5f0;
 }
 
 input:focus,
@@ -122,28 +130,30 @@ select:focus,
 button:focus-visible {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.16);
+    box-shadow: 0 0 0 3px var(--primary-soft);
 }
 
 input[type="submit"],
 button {
-    background: linear-gradient(90deg, var(--primary) 0%, #3b82f6 100%);
+    background: var(--primary);
     color: white;
-    border: none;
+    border: 1px solid var(--primary);
     cursor: pointer;
-    font-weight: 700;
-    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.2);
+    font-weight: 600;
+    width: auto;
+    padding: 11px 22px;
+    align-self: flex-start;
 }
 
 input[type="submit"]:hover,
 button:hover {
-    background: linear-gradient(90deg, var(--primary-dark) 0%, var(--primary) 100%);
-    transform: translateY(-1px);
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
 }
 
 input[type="submit"]:active,
 button:active {
-    transform: translateY(0);
+    transform: scale(0.98);
 }
 
 table {
@@ -152,22 +162,27 @@ table {
     margin: 10px auto 0;
     border-collapse: collapse;
     background: var(--surface);
-    border-radius: 16px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
 }
 
 th,
 td {
-    padding: 13px 12px;
-    border-bottom: 1px solid #e2e8f0;
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
     text-align: center;
+    font-size: 0.94rem;
 }
 
 th {
-    background: linear-gradient(90deg, var(--primary) 0%, #1d4ed8 100%);
-    color: white;
+    background: var(--surface-soft);
+    color: var(--text);
     font-weight: 700;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--primary);
 }
 
 tr:hover {
@@ -177,7 +192,7 @@ tr:hover {
 p {
     margin-top: 18px;
     text-align: center;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--muted);
 }
 
@@ -188,30 +203,37 @@ ul {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
 }
 
 li {
     width: 100%;
-    background: rgba(255, 255, 255, 0.96);
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 20px 24px;
-    box-shadow: var(--shadow);
-    text-align: center;
+    border-left: 3px solid var(--primary);
+    border-radius: 8px;
+    padding: 18px 22px;
+    text-align: left;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+li:hover {
+    border-left-color: var(--primary-dark);
+    transform: translateX(2px);
 }
 
 li h3,
 li p {
-    text-align: center;
-    margin: 6px 0;
+    text-align: left;
+    margin: 5px 0;
 }
 
 h1 {
     text-align: center;
-    margin: 12px 0 16px;
+    margin: 8px 0 20px;
     color: var(--text);
     font-size: clamp(1.4rem, 2.2vw, 2rem);
+    font-weight: 700;
 }
 
 .btn-pagina {
@@ -219,50 +241,47 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1.5px solid #2563eb;
-  background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
-  color: white;
-  font-size: 22px;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--primary);
+  font-size: 18px;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.22);
-  transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
+  transition: background 0.15s, border-color 0.15s;
   box-sizing: border-box;
 }
 
 .btn-pagina:hover:not(:disabled) {
-  background: linear-gradient(90deg, #1d4ed8 0%, #2563eb 100%);
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.32);
-  transform: translateY(-1px);
+  background: var(--primary-soft);
+  border-color: var(--primary);
 }
 
 .btn-pagina:active:not(:disabled) {
-  transform: translateY(0);
+  transform: scale(0.96);
 }
 
 .btn-pagina:disabled {
-  background: #e2e8f0;
-  border-color: #e2e8f0;
+  background: var(--surface-soft);
+  border-color: var(--border);
   color: #94a3b8;
   cursor: not-allowed;
-  box-shadow: none;
 }
 
 @media (max-width: 768px) {
     .navbar {
         justify-content: flex-start;
-        padding: 14px 16px;
+        padding: 12px 16px;
     }
 
     .navbar a {
         padding: 8px 12px;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
 
     form {
-        padding: 24px;
+        padding: 22px;
     }
 
     table {

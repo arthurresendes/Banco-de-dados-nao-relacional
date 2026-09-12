@@ -106,17 +106,16 @@ button {
     width: 100%;
     padding: 13px 15px;
     border: 1.5px solid var(--border);
-    border-radius: 12px;
+    border-radius: 8px;
     font-size: 15px;
     color: var(--text);
-    background: var(--surface-soft);
+    background: var(--surface);
     transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
 input:hover,
 select:hover {
     border-color: #b3d1fb;
-    background: var(--surface);
 }
 
 input:focus,
@@ -124,7 +123,6 @@ select:focus,
 button:focus-visible {
     outline: none;
     border-color: var(--primary);
-    background: var(--surface);
     box-shadow: 0 0 0 4px var(--primary-soft);
 }
 
@@ -136,7 +134,7 @@ button {
     cursor: pointer;
     font-weight: 700;
     padding: 14px 20px;
-    border-radius: 999px;
+    border-radius: 8px;
 }
 
 input[type="submit"]:hover,
@@ -207,16 +205,18 @@ li {
     width: 100%;
     background: var(--surface);
     border: 1px solid var(--border);
+    border-left: 3px solid var(--primary);
     border-radius: 18px;
     padding: 26px 24px;
     box-shadow: var(--shadow);
     text-align: left;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-left-color 0.2s ease;
 }
 
 li:hover {
     transform: translateY(-3px);
     box-shadow: 0 22px 48px rgba(15, 23, 42, 0.1);
+    border-left-color: var(--primary-dark);
 }
 
 li h3,
@@ -252,7 +252,7 @@ h1 {
   justify-content: center;
   width: 42px;
   height: 42px;
-  border-radius: 50%;
+  border-radius: 10px;
   border: 1.5px solid var(--border);
   background: var(--surface);
   color: var(--primary);

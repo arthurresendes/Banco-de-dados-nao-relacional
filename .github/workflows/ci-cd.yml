@@ -1,0 +1,68 @@
+name: StreamFlux CI/CD
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "Dados/netflix/**"
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "Dados/netflix/**"
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: Dados/netflix/netflix-front
+
+    steps:
+      - name: Checkout do repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: Dados/netflix/netflix-front/package-lock.json
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Executar Lint
+        run: npm run lint
+
+      - name: Gerar build da aplicacao
+        run: npm run build
+
+  backend:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: Dados/netflix/Script
+
+    steps:
+      - name: Checkout do repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: Dados/netflix/Script/requirements.txt
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Validar sintaxe do Python
+        run: python -m compileall -q .

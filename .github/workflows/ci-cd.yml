@@ -6,12 +6,14 @@ on:
       - main
     paths:
       - "Dados/netflix/**"
+      - ".github/workflows/ci-cd.yml"
 
   pull_request:
     branches:
       - main
     paths:
       - "Dados/netflix/**"
+      - ".github/workflows/ci-cd.yml"
 
 jobs:
   frontend:

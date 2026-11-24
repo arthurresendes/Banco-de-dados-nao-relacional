@@ -1,5 +1,7 @@
+# Definimos o nome do WORKFLOW que irá aparecer na Actions do github
 name: StreamFlux CI/CD
 
+# O 'on' é o gatilho (trigger) que inicia a execução automatica quando tem um push ou um pull_request nos diretorios de Dados/netflix, onde tem codigo Frontend e Backend e no github/workflows/ci-cd.yml, que é esse arquivo nas alterações do CI/CD ele faz a verificação se tudo certo. Tudo isso ocorre se as alterações forem enviadas para Branch main.
 on:
   push:
     branches:
@@ -7,7 +9,6 @@ on:
     paths:
       - "Dados/netflix/**"
       - ".github/workflows/ci-cd.yml"
-
   pull_request:
     branches:
       - main
@@ -15,6 +16,7 @@ on:
       - "Dados/netflix/**"
       - ".github/workflows/ci-cd.yml"
 
+# O 'jobs' define as seções que serão executadas quando o 'on' for ativo. Com a criação de maquinas ubuntu, baixando o codigo da branch main para push e pega a branch do PR quando é feito um pull_request para a maquina virtual, faz as devidas configurações de linguagens (node e python), instala as devidas dependencias (npm ci e python -m pip install -r requirements.txt) e faz o build (npm run build e python -m compileall -q .) de cada job.
 jobs:
   frontend:
     name: CI Frontend
@@ -71,6 +73,7 @@ jobs:
       - name: Validar sintaxe do Python
         run: python -m compileall -q .
 
+  # Já na parte de 'deploy' é aonde ocorre o CD, fazendo o deploy de forma automatica para a VERCEL e o RENDER para atualizar produção. O needs garante que o deploy so rode depois que os jobs de Frontend e Backend deram sucesso.
   deploy:
     name: Deploy StreamFlux
     runs-on: ubuntu-latest

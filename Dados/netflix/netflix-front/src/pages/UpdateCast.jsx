@@ -24,7 +24,7 @@ const UpdateCast = () => {
         <div>
             <form action="" onSubmit={handleUpdate}>
                 <label htmlFor="">
-                    Nome do filme
+                    Nome do filme / série
                     <input type="text" name="" id="" value={busca} onChange={(e) => setBusca(e.target.value)} />
                 </label>
                 <br />

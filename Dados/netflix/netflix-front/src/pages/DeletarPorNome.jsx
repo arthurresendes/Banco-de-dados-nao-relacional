@@ -19,7 +19,7 @@ const DeletarPorNome = () => {
         <div>
             <form action="" onSubmit={handleDelete}>
                 <label htmlFor="">
-                    Nome do filme
+                    Nome do filme / série
                     <input type="text" name="" id="" value={busca} onChange={(e) => setBusca(e.target.value)} />
                     <input type="submit" value="Enviar" />
                 </label>

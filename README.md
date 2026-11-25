@@ -9,7 +9,6 @@ O StreamFlux reúne uma API REST desenvolvida com **FastAPI** e uma interface fe
 ### Acesse
 
 - **Aplicação web:** [streamingmongo.vercel.app](https://streamingmongo.vercel.app)
-- **Documentação interativa da API:** [banco-de-dados-nao-relacional.onrender.com/docs](https://banco-de-dados-nao-relacional.onrender.com/docs)
 
 ### Funcionalidades
 

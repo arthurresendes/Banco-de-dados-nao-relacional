@@ -1,137 +1,197 @@
 # 📚 Banco de Dados Não Relacional
 
-Uma coleção completa de estudos, aprendizados e projetos práticos sobre bancos de dados não relacionais, com implementações em Python utilizando MongoDB.
+Repositório de estudos e projetos práticos sobre bancos de dados NoSQL, com foco em **MongoDB** e **Python**. O principal projeto é o **StreamFlux**, uma aplicação web para consultar e gerenciar um catálogo de filmes e séries.
 
----
+## 🎬 StreamFlux
 
-## 📑 Estrutura do Repositório
+O StreamFlux reúne uma API REST desenvolvida com **FastAPI** e uma interface feita com **React + Vite**. A aplicação consulta e modifica dados em uma coleção do **MongoDB Atlas**.
 
-### 📖 **Aprendizado**
+### Acesse
 
-Pasta dedicada ao estudo e aprendizado de conceitos fundamentais de bancos de dados não relacionais.
+- **Aplicação web:** [streamingmongo.vercel.app](https://streamingmongo.vercel.app)
+- **Documentação interativa da API:** [banco-de-dados-nao-relacional.onrender.com/docs](https://banco-de-dados-nao-relacional.onrender.com/docs)
 
-#### Subdirectórios:
+### Funcionalidades
 
-- **Atualizando** - Exemplos e exercícios sobre operações de atualização (UPDATE)
-- **Contagem** - Técnicas de contagem e agregação de dados
-- **Criacao_Insercao_Banco** - Criação de bancos de dados e inserção de registros
-- **Deletar** - Operações de exclusão (DELETE) de documentos
-- **Filtragem** - Métodos de filtragem e consultas avançadas
-- **Limite** - Uso de limites em consultas (LIMIT)
-- **Ordenação** - Ordenação de resultados (SORT)
-- **Indexes** - Criação de índices para otimizar na pesquisa
-- **Aggregation** - Resultado de múltiplas tabelas com campos em comum
+- Buscar filmes e séries pelo título.
+- Encontrar produções em que um ator ou atriz participou.
+- Consultar títulos lançados antes do ano 2000, com uma opção de paginação.
+- Listar categorias e consultar até cinco títulos de uma categoria.
+- Cadastrar títulos no catálogo.
+- Adicionar um ator ao elenco de um título.
+- Remover títulos pelo nome.
 
----
+### Tecnologias
 
-### 🎬 **StreamFlux**
+| Camada | Tecnologias |
+| --- | --- |
+| Front-end | React, React Router, Vite, JavaScript e CSS |
+| Back-end | Python, FastAPI, Uvicorn, Pydantic e SlowAPI |
+| Banco de dados | MongoDB Atlas e PyMongo |
+| Hospedagem | Vercel (front-end) e Render (API) |
+| Automação | GitHub Actions |
 
-API REST completa integrada a um front-end React, simulando um catálogo de streaming com dados reais da Netflix, utilizando FastAPI + MongoDB Atlas.
+### Estrutura do projeto
 
-**Deploy:**
+```text
+Dados/netflix/
+├── netflix_titles.csv              # Dataset de filmes e séries
+├── Script/                         # API FastAPI
+│   ├── main.py                     # Inicialização da API, CORS e rate limiting
+│   ├── rotas.py                    # Endpoints REST
+│   ├── query.py                    # Consultas e operações no MongoDB
+│   ├── Schemas.py                  # Modelos de entrada com Pydantic
+│   ├── limitador.py                # Configuração do limite de requisições
+│   ├── requirements.txt            # Dependências Python
+│   └── Dockerfile
+└── netflix-front/                  # Aplicação React + Vite
+    ├── src/
+    │   ├── api/                    # Chamadas para a API
+    │   ├── components/             # Componentes reutilizáveis
+    │   ├── context/                # Contextos da aplicação
+    │   └── pages/                  # Páginas da interface
+    ├── package.json
+    ├── vite.config.js
+    ├── vercel.json
+    └── Dockerfile
+```
 
-- 🔗 Front-end: [streamingmongo.vercel.app](https://streamingmongo.vercel.app)
-- 🔗 Back-end: [banco-de-dados-nao-relacional.onrender.com/docs](https://banco-de-dados-nao-relacional.onrender.com/docs)
+### Endpoints da API
 
-**Funcionalidades do Front-end:**
+As rotas do StreamFlux usam o prefixo `/api/v1`.
 
-- 🎯 **Top 5** — Seleciona uma categoria via selectbox e retorna os 5 títulos ordenados
-- 🕰️ **Século Passado** — Lista filmes e séries lançados antes do ano 2000
-- 🔍 **Buscar por Título** — Busca exata de um filme ou série pelo nome
-- 🎭 **Buscar por Ator** — Exibe todas as produções em que um ator esteve presente
-- ✏️ **Atualizar Cast** — Adiciona um ator ao elenco de um título existente
-- ❌ **Deletar por nome** = Deletar filme/série
-- ➕ **Adicionar Filme/Série** — Cadastra um novo título no catálogo
-
-**Endpoints da API:**
 | Método | Rota | Descrição |
-|--------|------|-----------|
-| GET | `/api/v1/see_especific/{title}` | Busca por título |
-| GET | `/api/v1/netflix_lt_2000` | Títulos antes de 2000 |
-| GET | `/api/v1/especifics_types/{type}` | Top 5 por categoria |
-| GET | `/api/v1/see_actor_especific/{name}` | Busca por ator |
-| GET | `/api/v1/see_all_types` | Lista todas as categorias |
-| POST | `/api/v1/adicionando_novo` | Adiciona novo título |
-| PATCH | `/api/v1/atualizando` | Atualiza elenco |
-| DELETE | `/api/v1/delete_per_name/{name}` | Remove por nome |
+| --- | --- | --- |
+| `GET` | `/` | Verifica se a API está disponível |
+| `GET` | `/see_especific/{title}` | Busca um título pelo nome |
+| `GET` | `/netflix_lt_2000` | Lista títulos lançados até 1999 |
+| `GET` | `/netflix_lt_2000_page?pagina=1` | Lista títulos anteriores a 2000 com paginação |
+| `GET` | `/especifics_types/{type}` | Consulta até cinco títulos de uma categoria |
+| `GET` | `/see_actor_especific/{name}` | Busca produções pelo nome de um ator ou atriz |
+| `GET` | `/see_all_types` | Lista as categorias disponíveis |
+| `POST` | `/adicionando_novo` | Cadastra um filme ou uma série |
+| `PATCH` | `/atualizando` | Adiciona um ator ao elenco de um título |
+| `DELETE` | `/delete_per_name/{name}` | Remove um título pelo nome |
 
-**Stack:**
+Acesse `/docs` para testar os endpoints e conferir os modelos de requisição e as respostas.
 
-- Back-end: Python, FastAPI, Uvicorn
-- Banco: MongoDB Atlas
-- Front-end: React + Vite
-- Deploy: Render (back-end) + Vercel (front-end)
-
----
-
-**### ⚙️ CI/CD — GitHub Actions**
-
-Pipeline de Integração Contínua (CI) e Entrega/Implantação Contínua (CD) desenvolvida para automatizar a validação e publicação do StreamFlux.
-
-O workflow está localizado em `.github/workflows/ci-cd.yml` e utiliza o GitHub Actions para executar verificações independentes no front-end e back-end.
-
-**Funcionalidades da Pipeline:**
-
-- 🔄 **Execução automática:** acionada por `push` na branch `main` e por `pull_request` direcionado à `main`.
-- 🖥️ **CI Front-end:** configuração do Node.js 24, instalação de dependências com `npm ci`, execução do Lint e geração do build com Vite.
-- 🐍 **CI Back-end:** configuração do Python 3.11, instalação das dependências do `requirements.txt` e validação da sintaxe com `compileall`.
-- 🚀 **CD automatizado:** executado somente após a aprovação das validações do front-end e back-end, em eventos de `push` na branch `main`.
-- 🔐 **Gerenciamento de credenciais:** utilização de GitHub Secrets para armazenar os Deploy Hooks dos serviços de hospedagem.
-
-**Estratégia de Deployment:**
-
-| Serviço | Responsabilidade                           |
-| ------- | ------------------------------------------ |
-| Vercel  | Publicação automatizada do front-end React |
-| Render  | Publicação automatizada da API FastAPI     |
-
-**Fluxo de execução:**
-
-`Push / Pull Request` → `CI Front-end + CI Back-end` → `Validação aprovada` → `CD na main` → `Vercel + Render`
-
-**Arquivo da Pipeline:** `.github/workflows/ci-cd.yml`
-
----
-
----
-
-### 🏪 **Projeto_Estoque**
-
-Sistema de gerenciamento de estoque implementado com bancos de dados não relacionais.
-
-**Arquivos:**
-
-- `main.py` - Aplicação principal do sistema de estoque com funcionalidades CRUD
-
-**Funcionalidades:**
-
-- Criar, ler, atualizar e deletar produtos
-- Controlar quantidade em estoque
-- Consultas avançadas sobre inventário
-
----
-
-### 💰 **Projeto_Financas**
-
-Sistema de gerenciamento financeiro com operações complexas em bancos de dados não relacionais.
-
-**Arquivos:**
-
-- `main.py` - Aplicação principal do sistema financeiro
-- `querys.py` - Módulo com queries e operações de banco de dados
-
-**Funcionalidades:**
-
-- Gerenciamento de transações financeiras
-- Relatórios e agregações
-- Consultas otimizadas para análise financeira
-
----
-
-## 🚀 Como Usar
+## 🚀 Executar o StreamFlux localmente
 
 ### Pré-requisitos
 
-- Python 3.7+
-- MongoDB instalado e configurado
-- Bibliotecas Python necessárias (pymongo, etc)
+- Python 3.11 ou compatível com as dependências do projeto.
+- Node.js e npm. O workflow de CI utiliza Node.js 24.
+- Uma instância MongoDB acessível, com a base e a coleção utilizadas pela API.
+
+### Configurar o MongoDB
+
+A API usa a variável de ambiente `MONGO_ATLAS_URI` e acessa a base `Netflix`, coleção `informations`.
+
+Configure a variável no ambiente ou em um arquivo `.env` dentro de `Dados/netflix/Script/`:
+
+```dotenv
+MONGO_ATLAS_URI=sua_uri_do_mongodb
+```
+
+Não compartilhe nem versione credenciais ou URIs que contenham senhas.
+
+### Iniciar o back-end
+
+```bash
+cd Dados/netflix/Script
+python -m venv .venv
+```
+
+Ative o ambiente virtual:
+
+```bash
+# Linux ou macOS
+source .venv/bin/activate
+```
+
+```powershell
+# Windows PowerShell
+.venv\Scripts\Activate.ps1
+```
+
+Instale as dependências e inicie a API:
+
+```bash
+pip install -r requirements.txt
+python -m uvicorn main:app --reload
+```
+
+A API ficará disponível em `http://localhost:8000`. A documentação interativa ficará em `http://localhost:8000/docs`.
+
+### Iniciar o front-end
+
+Em outro terminal:
+
+```bash
+cd Dados/netflix/netflix-front
+npm ci
+npm run dev
+```
+
+Por padrão, o front-end usa `http://localhost:8000` para acessar a API. Para usar outra URL, defina `VITE_API_URL` no ambiente ou em `Dados/netflix/netflix-front/.env`:
+
+```dotenv
+VITE_API_URL=http://localhost:8000
+```
+
+## ⚙️ CI/CD
+
+O workflow [`.github/workflows/ci-cd.yml`](.github/workflows/ci-cd.yml) valida o front-end e o back-end quando há alterações em `Dados/netflix/**` ou no próprio workflow, em `push` e `pull_request` direcionados à branch `main`.
+
+As verificações incluem:
+
+- **Front-end:** instalação com `npm ci`, lint com Oxlint e build com Vite.
+- **Back-end:** instalação das dependências Python e validação da sintaxe.
+- **Deploy:** em um `push` para `main`, após as verificações, o workflow aciona os deploy hooks da Vercel e do Render.
+
+Configure os seguintes GitHub Secrets para habilitar o deploy automatizado:
+
+- `VERCEL_DEPLOY_HOOK_URL`
+- `RENDER_DEPLOY_HOOK_URL`
+
+## 🧭 Outros conteúdos do repositório
+
+### `Aprendizado/` — exemplos de MongoDB
+
+Exercícios em Python/PyMongo organizados por assunto:
+
+- Operações CRUD, criação e inserção de documentos.
+- Atualização e exclusão de documentos.
+- Filtragem com operadores lógicos e de comparação.
+- Contagem, limite e ordenação de resultados.
+- Relacionamentos um-para-um, um-para-muitos e muitos-para-muitos.
+- Schemas e validação de documentos.
+
+### `Dados/` — datasets e consultas
+
+- **`Dados/netflix/`** contém o dataset CSV e o projeto StreamFlux.
+- **`Dados/pokemon/`** contém datasets de Pokémon e combates, além de exemplos de consultas com filtros, atualizações, índices, agregações e relacionamentos.
+- **`Dados/data/`** reúne arquivos JSON e CSV utilizados nos estudos, incluindo dados de Netflix e Pokémon.
+
+### `Projeto_Estoque/` — exercício de estoque
+
+O arquivo `main.py` demonstra operações em uma coleção de produtos: inserção, consulta, atualização, exclusão, contagem, ordenação, limite e filtros. A conexão usa a variável de ambiente `MONGO_URI`.
+
+### `Projeto_Financas/` — exercício de finanças
+
+Aplicação de terminal para consultar e manter registros de pessoas, salários e investimentos em MongoDB:
+
+- `main.py` contém o menu da aplicação.
+- `querys.py` concentra as operações de banco de dados, filtros por faixa salarial e consultas de investimentos.
+
+A conexão também usa a variável de ambiente `MONGO_URI`.
+
+## 🔐 Segurança
+
+Os exemplos usam variáveis de ambiente para conectar ao MongoDB. O StreamFlux utiliza `MONGO_ATLAS_URI`; os projetos de estoque e finanças utilizam `MONGO_URI`.
+
+Mantenha credenciais em arquivos locais ou secrets do ambiente de hospedagem. Nunca inclua senhas, chaves ou URIs privadas no código ou em commits.
+
+## 📄 Licença
+
+Este repositório não contém uma licença identificada. Consulte o autor para esclarecer as condições de uso e redistribuição.

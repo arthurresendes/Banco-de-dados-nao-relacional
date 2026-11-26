@@ -184,13 +184,3 @@ Aplicação de terminal para consultar e manter registros de pessoas, salários 
 - `querys.py` concentra as operações de banco de dados, filtros por faixa salarial e consultas de investimentos.
 
 A conexão também usa a variável de ambiente `MONGO_URI`.
-
-## 🔐 Segurança
-
-Os exemplos usam variáveis de ambiente para conectar ao MongoDB. O StreamFlux utiliza `MONGO_ATLAS_URI`; os projetos de estoque e finanças utilizam `MONGO_URI`.
-
-Mantenha credenciais em arquivos locais ou secrets do ambiente de hospedagem. Nunca inclua senhas, chaves ou URIs privadas no código ou em commits.
-
-## 📄 Licença
-
-Este repositório não contém uma licença identificada. Consulte o autor para esclarecer as condições de uso e redistribuição.
